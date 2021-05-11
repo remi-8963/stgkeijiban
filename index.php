@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
     </head>
     <body>
-        <h1>test</h1>
+        <h1>一覧</h1>
         <p style="color:red; font-size:50px"><?=$_GET['message'] ?? ''?></p>
 
         <table>
@@ -35,7 +35,7 @@
                         <td>VCできません</td>
                     <?php endif; ?>
 
-                    <td><a href="user.php?id=<?=$row['id']?>">リンク</a></td>
+                    <td><a href="user.php?id=<?=$row['id']?>">ああああ</a></td>
                 </tr>
             <?php endwhile ?>
         </table>
