@@ -52,8 +52,16 @@
     <head>
         <meta charset="UTF-8">
         <title><?=$name?>さんのプロフィール</title>
+        <meta property="og:title" content="<?=$name?>さんのプロフィール">
+        <meta property="og:description" content="<?=$name?>さんのプロフィール">
+        <meta property="og:type" content="article"> 
+        <meta property="og:image" content="https://stgkeijiban.com/img.php?id=<?=$_GET['id']?>">
+        <meta property="og:url" content="https://stgkeijiban.com/">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="<?=$name?>さんのプロフィール">
         <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+
     </head>
     <body>
         <h1><?=$name?>さんのプロフィール</h1>
