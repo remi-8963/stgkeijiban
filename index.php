@@ -34,7 +34,7 @@
                     <?php else: ?>
                         <td>VCできません</td>
                     <?php endif; ?>
-
+kkkkkkkkkkkkkkkk
                     <td><a href="user.php?id=<?=$row['id']?>">あああkkkkあ</a></td>
                 </tr>
             <?php endwhile ?>
