@@ -32,7 +32,7 @@ if ($_SESSION['is_loggin'] && $_GET['id'] == $_SESSION['id']) {
 
         <form action="check_2.php" method="post">
             <input type="hidden" name="id" size="30" maxlength="255" value="<?=$_GET['id']?>" />
-            <p>パスワード: <input type="text" name="pass_word" size="30" maxlength="255" /></p>
+            <p>パスワード: <input type="text" name="pass_word" size="30" maxlength="255" required/></p>
             <p>
                 <input type="submit" value="ログイン">
                 <input type="reset" value="リセット">

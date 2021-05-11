@@ -28,7 +28,7 @@ $result = mysqli_query($db,$sql) or die(mysqli_error($db));
 
 // 一致するレコードが存在しない
 if (!mysqli_fetch_assoc($result)) {
-    header("Location: user.php?id=$id");
+    header("Location: check.php?id=$id");
     exit();
 }
 
