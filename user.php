@@ -82,8 +82,8 @@
 
     
 
-        <a href="/check.php?id=<?=$_GET['id']?>"><button>編集</button></a>
-        <a href="/sign_up.php"><button>自分のプロフィールも作ってみる！</button></a>
+        <a href="check.php?id=<?=$_GET['id']?>"><button>編集</button></a>
+        <a href="sign_up.php"><button>自分のプロフィールも作ってみる！</button></a>
     </body>
 </html>
 
