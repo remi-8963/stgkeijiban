@@ -3,11 +3,11 @@
 
     if (!isset($_GET['id'])) {
         header('Location: index.php');
-
     }
+    $id = $_GET['id'];
 
     $sql = sprintf('SELECT name, sex, play_style, active_time, comment, is_vc FROM users WHERE id = %d',
-        mysqli_real_escape_string($db, $_GET['id'])
+        mysqli_real_escape_string($db, $id)
     );
 
     $result = mysqli_query($db,$sql) or die(mysqli_error($db));
@@ -55,7 +55,7 @@
         <meta property="og:title" content="<?=$name?>さんのプロフィール">
         <meta property="og:description" content="<?=$name?>さんのプロフィール">
         <meta property="og:type" content="article"> 
-        <meta property="og:image" content="https://stgkeijiban.com/img.php?id=<?=$_GET['id']?>">
+        <meta property="og:image" content="https://stgkeijiban.com/img.php?id=<?=$id?>">
         <meta property="og:url" content="https://stgkeijiban.com/">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="<?=$name?>さんのプロフィール">
@@ -66,7 +66,7 @@
     <body>
         <h1><?=$name?>さんのプロフィール</h1>
 
-        <img src="./img.php?id=<?=$_GET['id']?>">
+        <img src="./img.php?id=<?=$id?>">
 
         <table border="1">
             
@@ -90,7 +90,8 @@
 
     
 
-        <a href="check.php?id=<?=$_GET['id']?>"><button>編集</button></a>
+        <a href="https://twitter.com/intent/tweet?url=https://stgkeijiban.com/user?id=<?=$id?>&text=<?=$name?>さんのプロフィールをみにいこう！"><button>共有</button></a>
+        <a href="check.php?id=<?=$id?>"><button>編集</button></a>
         <a href="sign_up.php"><button>自分のプロフィールも作ってみる！</button></a>
     </body>
 </html>
