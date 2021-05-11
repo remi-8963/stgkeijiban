@@ -35,7 +35,7 @@
                         <td>VCできません</td>
                     <?php endif; ?>
 
-                    <td><a href="user.php?id=<?=$row['id']?>">ああああ</a></td>
+                    <td><a href="user.php?id=<?=$row['id']?>">あああkkkkあ</a></td>
                 </tr>
             <?php endwhile ?>
         </table>
