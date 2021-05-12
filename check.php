@@ -22,6 +22,7 @@ if ($_SESSION['is_loggin'] && $_GET['id'] == $_SESSION['id']) {
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ログイン画面</title>
     </head>
     <body>
