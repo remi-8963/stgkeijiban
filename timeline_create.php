@@ -10,7 +10,7 @@ if(
   isset($_POST['text']) &&
   $_POST['text'] === ''
 ) {
-  header('Location: ' . $location);
+  header('Location:index.php');
   die();
 };
 
