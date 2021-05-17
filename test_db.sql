@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: localhost
--- 生成日時: 2021 年 5 月 11 日 09:26
+-- 生成日時: 2021 年 5 月 17 日 07:18
 -- サーバのバージョン： 8.0.23
 -- PHP のバージョン: 8.0.3
 
@@ -42,6 +42,39 @@ CREATE TABLE `games` (
 INSERT INTO `games` (`id`, `title`, `is_fpp`, `updated_at`, `created_at`) VALUES
 (1, 'pubg', 1, '2021-04-14 04:36:28', '2021-04-14 04:36:28'),
 (2, 'apex', 1, '2021-04-14 05:37:47', '2021-04-14 05:37:47');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `timelines`
+--
+
+CREATE TABLE `timelines` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `text` varchar(255) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `timelines`
+--
+
+INSERT INTO `timelines` (`id`, `user_id`, `text`, `updated_at`, `created_at`) VALUES
+(1, 3, 'test', '2021-05-16 13:32:08', '2021-05-16 13:32:08'),
+(2, 3, 'abcde', '2021-05-16 14:33:10', '2021-05-16 14:33:10'),
+(3, 3, 'abcde', '2021-05-16 14:33:54', '2021-05-16 14:33:54'),
+(4, 3, 'あいうえお', '2021-05-16 14:34:12', '2021-05-16 14:34:12'),
+(5, 3, 'あいう', '2021-05-16 14:40:19', '2021-05-16 14:40:19'),
+(6, 3, '<script>alert(\'xss\')</script>', '2021-05-16 14:45:15', '2021-05-16 14:45:15'),
+(7, 3, '', '2021-05-17 05:03:34', '2021-05-17 05:03:34'),
+(8, 3, 'a', '2021-05-17 05:42:07', '2021-05-17 05:42:07'),
+(9, 3, '1234567890', '2021-05-17 05:47:48', '2021-05-17 05:47:48'),
+(10, 86, 'a', '2021-05-17 05:52:09', '2021-05-17 05:52:09'),
+(11, 86, 'q', '2021-05-17 06:12:46', '2021-05-17 06:12:46'),
+(12, 3, 'r', '2021-05-17 06:23:54', '2021-05-17 06:23:54'),
+(13, 3, 'y', '2021-05-17 07:04:53', '2021-05-17 07:04:53');
 
 -- --------------------------------------------------------
 
@@ -110,6 +143,13 @@ ALTER TABLE `games`
   ADD PRIMARY KEY (`id`);
 
 --
+-- テーブルのインデックス `timelines`
+--
+ALTER TABLE `timelines`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `timelines_users_id` (`user_id`);
+
+--
 -- テーブルのインデックス `users`
 --
 ALTER TABLE `users`
@@ -133,6 +173,12 @@ ALTER TABLE `games`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- テーブルの AUTO_INCREMENT `timelines`
+--
+ALTER TABLE `timelines`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- テーブルの AUTO_INCREMENT `users`
 --
 ALTER TABLE `users`
@@ -141,6 +187,12 @@ ALTER TABLE `users`
 --
 -- ダンプしたテーブルの制約
 --
+
+--
+-- テーブルの制約 `timelines`
+--
+ALTER TABLE `timelines`
+  ADD CONSTRAINT `timelines_users_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- テーブルの制約 `users_games`
