@@ -54,12 +54,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?=$name?>さんのプロフィール</title>
         <meta property="og:title" content="<?=$name?>さんのプロフィール">
-        <meta property="og:description" content="<?=$name?>さんのプロフィール">
-        <meta property="og:type" content="article"> 
+        <meta property="og:description" content="<?=$name?>さんのプロフィール"><!-- ページのディスクリプション -->
+        <meta property="og:type" content="article"> <!-- ページの種類　-->
         <meta property="og:image" content="https://stgkeijiban.com/img.php?id=<?=$id?>">
-        <meta property="og:url" content="https://stgkeijiban.com/">
+        <meta property="og:url" content="https://stgkeijiban.com/"><!-- ページのURL -->
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="<?=$name?>さんのプロフィール">
+        <meta name="twitter:title" content="<?=$name?>さんの">
         <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
 
@@ -93,7 +93,10 @@
 
         <a href="https://twitter.com/intent/tweet?url=https://stgkeijiban.com/user?id=<?=$id?>&text=<?=$name?>さんのプロフィールをみにいこう！"><button>共有</button></a>
         <a href="check.php?id=<?=$id?>"><button>編集</button></a>
+        <a href="timeline.php"><button>タイムライン</button></a>
         <a href="sign_up.php"><button>自分のプロフィールも作ってみる！</button></a>
+
+        
     </body>
 </html>
 

@@ -5,17 +5,22 @@ require('dbconnect.php');
 
 session_start();
 
-// 害悪
-if (empty($_GET)) {
-    header('Location: index.php');
-    exit();
-}
+function exception_handle($condition, $location) {
+    if ($condition === false) {
+        header('Location: ' . $location);
+        exit();
+    }
+  }
 
-// すでにログインしているユーザが自分のプロフィールを変更する場合
-if ($_SESSION['is_loggin'] && $_GET['id'] == $_SESSION['id']) {
-    header('Location: edit.php');
-    exit();
-}
+exception_handle([
+    isset($_GET['id']),
+], 'index.php');
+
+exception_handle([
+    isset($_SESSION['is_loggin']) &&
+    $_SESSION['is_loggin'] === true &&
+    $_GET['id'] == $_SESSION['id']
+], 'edit.php');
 ?>
 
 <!DOCTYPE html>

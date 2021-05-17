@@ -39,6 +39,7 @@
                 </tr>
             <?php endwhile ?>
         </table>
+        <a href="timeline.php"><button>タイムライン</button></a>
     </body>
 </html>
 
