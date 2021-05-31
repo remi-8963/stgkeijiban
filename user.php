@@ -89,8 +89,7 @@
             </tr>
         </table>
 
-    
-
+        <a href="index.php"><button>トップページに戻る</button></a>
         <a href="https://twitter.com/intent/tweet?url=https://stgkeijiban.com/user?id=<?=$id?>&text=<?=$name?>さんのプロフィールをみにいこう！"><button>共有</button></a>
         <a href="check.php?id=<?=$id?>"><button>編集</button></a>
         <a href="timeline.php"><button>タイムライン</button></a>

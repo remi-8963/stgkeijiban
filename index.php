@@ -24,6 +24,12 @@
         <h1>一覧</h1>
         <p style="color:red; font-size:50px"><?=$_GET['message'] ?? ''?></p>
 
+        <h2>検索</h2>
+            <form action="search.php" method="GET">
+            <input type="text" name="name">
+            <input type="submit" value="検索する">
+            </form>
+
         <table>
             <?php while($row = mysqli_fetch_assoc($result)): ?>
                 <tr>

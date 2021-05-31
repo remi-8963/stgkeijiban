@@ -1,10 +1,69 @@
 <?php
-    require('dbconnect.php');
+    require('dbconnect.php'); // ← $db が宣言されてる
     session_start();
 
-    $sql = sprintf('SELECT timelines.id AS comment_id, user_id, text, timelines.created_at, name FROM timelines JOIN users ON timelines.user_id = users.id WHERE timelines.destination_comment_id = 0 ORDER BY timelines.created_at DESC');
+    function print_comments($comment, $depth=0) {
+      global $db;
+      $id = $comment['id'];
+      $user_id = $comment['user_id'];
+      $name = $comment['name'];
+      $text = $comment['text'];
+      $created_at = $comment['created_at'];
+      $created_at = $comment['created_at'];
+      $margin_left = ($depth * 60).'px';
+      ?>
+        <div style='margin-left: <?=$margin_left?>'>
+          <div>
+            <a href="user.php?id=<?=$user_id?>">
+              <div style="width: 50px; height: 50px; background-color:white; border-radius: 9999px; overflow: hidden">
+                <img src="https://englishlive.ef.com/ja-jp/blog/wp-content/uploads/sites/10/2019/03/10751058080_IMG_3159.jpg" style="display: inline-block; width: 100%; height: 100%">
+              </div>
+              <p><?=$name?></p>
+            </a>
+          </div>
+          <div>
+            <?=htmlspecialchars($text)?> <!--クロスサイトスプリクティング対策-->
+          </div>
+          <form action='' method='GET'>
+          <p>ID: <button><?=$id?></button> 投稿日時: <?=$created_at?></p>
+        </div>
+      <?php
+    //$idでコメントを取ってくる　
+    //投稿に対する返信
+      $select_reply_comments = <<<SQL
+      SELECT 
+        timelines.id AS id,
+        timelines.user_id AS user_id,
+        timelines.text AS text,
+        timelines.created_at AS created_at,
+        users.name AS name
+      FROM timelines
+      JOIN users ON timelines.user_id = users.id
+      WHERE timelines.destination_comment_id = $id 
+      ORDER BY timelines.created_at DESC
+      SQL;
 
-    $result = mysqli_query($db,$sql) or die(mysqli_error($db));
+      $replied_comments = mysqli_query($db, $select_reply_comments);
+    
+      while($replied_comment = mysqli_fetch_assoc($replied_comments)) {
+        print_comments($replied_comment, $depth + 1);
+      }
+    }
+    //おおもとのコメント
+    $select_root_comments = <<<SQL
+    SELECT 
+      timelines.id AS id,
+      timelines.user_id AS user_id,
+      timelines.text AS text,
+      timelines.created_at AS created_at,
+      users.name AS name
+    FROM timelines
+    JOIN users ON timelines.user_id = users.id
+    WHERE timelines.destination_comment_id IS NULL
+    ORDER BY timelines.created_at DESC
+    SQL;
+
+    $root_comments = mysqli_query($db, $select_root_comments) or die(mysqli_error($db));
 
     $id = $_SESSION['id'];
 ?>
@@ -22,6 +81,8 @@
 <body>
     <h1>タイムライン</h1>
     <div>
+      <a href="user.php?id=<?=$id?>"><button>自分のプロフィールに戻る</button></a>
+      <a href="index.php"><button>トップページに戻る</button></a>
       <?php if(isset($_SESSION['is_loggin']) && $_SESSION['is_loggin'] === true): ?>
         <form action="timeline_create.php" method="post">
         <p>返信先コメントID: <input name="destination_comment_id"></p>
@@ -33,37 +94,9 @@
       <?php endif ?>
     </div>
     <div>
-      <?php while($row = mysqli_fetch_assoc($result)): ?>
-        <div>
-          <div>
-            <a href="user.php?id=<?=$row['user_id']?>">
-              <div style="width: 50px; height: 50px; background-color:white; border-radius: 9999px; overflow: hidden">
-                <img src="https://englishlive.ef.com/ja-jp/blog/wp-content/uploads/sites/10/2019/03/10751058080_IMG_3159.jpg" style="display: inline-block; width: 100%; height: 100%">
-              </div>
-              <p><?=$row['name']?></p>
-            </a>
-          </div>
-          <div>
-            <?=htmlspecialchars($row['text'])?> <!--クロスサイトスプリクティング対策-->
-          </div>
-          <p>投稿日時: <?=$row['created_at']?></p>
-          <p>コメントID: <?=$row['comment_id']?></p>
-        </div>
-        <?php 
-          $replies = mysqli_query($db,"SELECT * FROM timelines WHERE destination_comment_id = ".$row['comment_id']); //コメントへの返信
-          while($reply = mysqli_fetch_assoc($replies)): ?>
-          <p><?=$reply['text']?></p>
-        <?php endwhile ?>
+      <?php while($root_comment = mysqli_fetch_assoc($root_comments)): ?>
+        <?php print_comments($root_comment) ?>
       <?php endwhile?>
     </div>
-    <a href="user.php?id=<?=$id?>"><button>自分のプロフィールに戻る</button></a>
-    <a href="timeline.php"><button>タイムライン</button></a>
 </body>
 </html>
-
-<?php
-
-// if ($_SESSION['is_loggin'] !== true) {
-//   header('Location: index.php');
-//   exit();
-// }
