@@ -82,7 +82,6 @@
     <h1>タイムライン</h1>
     <div>
       <a href="user.php?id=<?=$id?>"><button>自分のプロフィールに戻る</button></a>
-      <a href="index.php"><button>トップページに戻る</button></a>
       <?php if(isset($_SESSION['is_loggin']) && $_SESSION['is_loggin'] === true): ?>
         <form action="timeline_create.php" method="post">
         <p>返信先コメントID: <input name="destination_comment_id"></p>
@@ -98,5 +97,6 @@
         <?php print_comments($root_comment) ?>
       <?php endwhile?>
     </div>
+
 </body>
 </html>
