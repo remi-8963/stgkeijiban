@@ -9,7 +9,6 @@
       $name = $comment['name'];
       $text = $comment['text'];
       $created_at = $comment['created_at'];
-      $created_at = $comment['created_at'];
       $margin_left = ($depth * 60).'px';
       ?>
         <div style='margin-left: <?=$margin_left?>'>
@@ -24,12 +23,12 @@
           <div>
             <?=htmlspecialchars($text)?> <!--クロスサイトスプリクティング対策-->
           </div>
-          <form action='' method='GET'>
-          <p>ID: <button><?=$id?></button> 投稿日時: <?=$created_at?></p>
+          <p>ID:  <a href="timeline.php?destination_comment_id=<?=$id?>"><button><?=$id?></button></a> 投稿日時: <?=$created_at?></p>
         </div>
       <?php
-    //$idでコメントを取ってくる　
-    //投稿に対する返信
+      //$idでコメントを取ってくる
+      //投稿に対する返信
+      echo $margin_left;
       $select_reply_comments = <<<SQL
       SELECT 
         timelines.id AS id,
@@ -40,9 +39,9 @@
       FROM timelines
       JOIN users ON timelines.user_id = users.id
       WHERE timelines.destination_comment_id = $id 
-      ORDER BY timelines.created_at DESC
+      ORDER BY timelines.created_at DESC 
       SQL;
-
+      
       $replied_comments = mysqli_query($db, $select_reply_comments);
     
       while($replied_comment = mysqli_fetch_assoc($replied_comments)) {
@@ -80,23 +79,20 @@
 </head>
 <body>
     <h1>タイムライン</h1>
-    <div>
-      <a href="user.php?id=<?=$id?>"><button>自分のプロフィールに戻る</button></a>
-      <?php if(isset($_SESSION['is_loggin']) && $_SESSION['is_loggin'] === true): ?>
-        <form action="timeline_create.php" method="post">
-        <p>返信先コメントID: <input name="destination_comment_id"></p>
+    <a href="user.php?id=<?=$id?>"><button>自分のプロフィールに戻る</button></a>
+    <?php if(isset($_SESSION['is_loggin']) && $_SESSION['is_loggin'] === true): ?>
+      <form action="timeline_create.php" method="post">
+        <p>返信先コメントID: <?=$_GET['destination_comment_id'] ?? ''?></p>
+        <input type="hidden" name="destination_comment_id" value="<?=$_GET['destination_comment_id'] ?? ''?>">
         <textarea name="text" cols="30" row="3" required></textarea>
-          <input type="submit" value="投稿">
-        </form>
-      <?php else: ?>
-        <p>ログインすると投稿できます。</p>
-      <?php endif ?>
-    </div>
-    <div>
-      <?php while($root_comment = mysqli_fetch_assoc($root_comments)): ?>
-        <?php print_comments($root_comment) ?>
-      <?php endwhile?>
-    </div>
+        <input type="submit" value="投稿">
+      </form>
+    <?php else: ?>
+      <p>ログインすると投稿できます。</p>
+    <?php endif ?>
+    <?php while($root_comment = mysqli_fetch_assoc($root_comments)): ?>
+      <?php print_comments($root_comment) ?>
+    <?php endwhile?>
 
 </body>
 </html>

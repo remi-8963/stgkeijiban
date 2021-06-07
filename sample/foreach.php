@@ -27,10 +27,12 @@ $students = [
 
 for ($i = 0; $i < count($students); $i++) {
   echo $students[$i]['name'] . "さん(" . $students[$i]['age'] . "歳)\n";
+  echo '<br>';
 }
 
 foreach($students as $key => $student) {
   echo "[$key] " . $student['name'] . "さん(" . $student['age'] . "歳)\n";
+  echo '<br>';
 }
 
 //連想配列　書き方　別例

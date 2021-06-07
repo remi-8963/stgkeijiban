@@ -10,7 +10,7 @@ if(empty($_POST)) {
 }
 
 if($_POST['name']!='' && $_POST['pass_word']!='') {
-    header('Location: sign_up.php?error=入力欄に空白が存在します');
+    header('Location: sign,_up.php?error=入力欄に空白が存在します');
     exit();
 }
 

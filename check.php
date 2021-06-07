@@ -35,7 +35,7 @@ exception_handle([
     <body>
         <h1>ログイン画面</h1>
         <hr>
-
+        
         <p>ID: <?=$_GET['id']?></p>
 
         <form action="check_2.php" method="post">

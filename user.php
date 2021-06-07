@@ -49,6 +49,7 @@
 <!DOCTYPE html>
 
 <html>
+<header><a href="check.php?id=<?=$id?>"><button>ログイン</button></a></header>  
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
