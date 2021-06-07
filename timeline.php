@@ -64,7 +64,7 @@
 
     $root_comments = mysqli_query($db, $select_root_comments) or die(mysqli_error($db));
 
-    $id = $_SESSION['id'];
+    $id = $_SESSION['id'] ?? '';
 ?>
 
 <!DOCTYPE html>
