@@ -1,26 +1,17 @@
 
 <?php
-
 require('dbconnect.php');
-
 session_start();
 
-function exception_handle($condition, $location) {
-    if ($condition === false) {
-        header('Location: ' . $location);
-        exit();
-    }
-  }
+$param_id = $_GET['id'] ?? null;
 
-exception_handle([
-    isset($_GET['id']),
-], 'index.php');
-
-exception_handle([
+if(
     isset($_SESSION['is_loggin']) &&
     $_SESSION['is_loggin'] === true &&
-    $_GET['id'] == $_SESSION['id']
-], 'edit.php');
+    $param_id == $_SESSION['id']
+){
+    header('Location: edit.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -34,23 +25,29 @@ exception_handle([
     </head>
     <body>
         <h1>ログイン画面</h1>
+        <a href="./"><button>←トップに戻る</button></a>
         <hr>
-        
-        <p>ID: <?=$_GET['id']?></p>
-
         <form action="check_2.php" method="post">
-            <input type="hidden" name="id" size="30" maxlength="255" value="<?=$_GET['id']?>" />
-            <p>パスワード: <input type="text" name="pass_word" size="30" maxlength="255" required/></p>
+            <table>
+                <tr>
+                    <?php // GETでIDが渡されていない場合は、テキストボックスを表示する ?>
+                    <?php if($param_id): ?>
+                        <input type="hidden" name="id" maxlength="255" value="<?=$param_id?>">
+                        <th>ID</th><td><?=$_GET['id']?></td>
+                    <?php else: ?>
+                        <td>ID</th><td><input name="id" maxlength="255" required></td>
+                    <?php endif; ?>
+                </tr>
+                <tr>
+                    <th>パスワード</th>
+                    <td><input type="password" name="pass_word" maxlength="255" required/></td>
+                </tr>
+            </table>
             <p>
                 <input type="submit" value="ログイン">
                 <input type="reset" value="リセット">
             </p>
         </form>
-        <?php
-        if($error = true) {
-            echo "※入力が空・もしくは入力が間違っています";
-        }
-        ?>
         <p>登録されていない場合は<a href="sign_up.php">ココ</a>から登録できます</p>
     </body>
 </html>
