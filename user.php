@@ -49,7 +49,7 @@
 <!DOCTYPE html>
 
 <html>
-<header><a href="check.php?id=<?=$id?>"><button>ログイン</button></a></header>  
+<header><a href="login.php?id=<?=$id?>"><button>ログイン</button></a></header>  
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -92,7 +92,7 @@
 
         <a href="index.php"><button>トップページに戻る</button></a>
         <a href="https://twitter.com/intent/tweet?url=https://stgkeijiban.com/user?id=<?=$id?>&text=<?=$name?>さんのプロフィールをみにいこう！"><button>共有</button></a>
-        <a href="check.php?id=<?=$id?>"><button>編集</button></a>
+        <a href="login.php?id=<?=$id?>"><button>編集</button></a>
         <a href="timeline.php"><button>タイムライン</button></a>
         <a href="sign_up.php"><button>自分のプロフィールも作ってみる！</button></a>
 
