@@ -1,11 +1,8 @@
 <?php
     require('common.php');
-    
-    $sql = sprintf('SELECT id, name, is_vc FROM users');
-    $result = mysqli_query($db,$sql) or die(mysqli_error($db));
-    $row = mysqli_fetch_assoc($result);
-    $name = $row['name'];
-    $is_vc = $row['is_vc'];
+
+    $sql = 'SELECT id, name, is_vc FROM users';
+    $users = mysqli_query($db,$sql) or die(mysqli_error($db));
 ?>
 
 <!DOCTYPE html>
@@ -29,12 +26,12 @@
 
         <h2>一覧</h2>
         <table>
-            <?php while($row = mysqli_fetch_assoc($result)): ?>
+            <?php while($user = mysqli_fetch_assoc($users)): ?>
                 <tr>
-                    <td><?=$row['id']?></td>
-                    <td><?=$row['name']?></td>
-                    <td><?=$row['is_vc'] ? 'VCできます' : 'VCできません'?></td>
-                    <td><a href="user.php?id=<?=$row['id']?>">リンク</a></td>
+                    <td><?=$user['id']?></td>
+                    <td><?=$user['name']?></td>
+                    <td><?=$user['is_vc'] ? 'VCできます' : 'VCできません'?></td>
+                    <td><a href="user.php?id=<?=$user['id']?>">リンク</a></td>
                 </tr>
             <?php endwhile ?>
         </table>
