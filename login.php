@@ -1,14 +1,13 @@
 
 <?php
-require('dbconnect.php');
-session_start();
+require('common.php');
+
 
 $param_id = $_GET['id'] ?? null;
 
 if(
-    isset($_SESSION['is_loggin']) &&
-    $_SESSION['is_loggin'] === true &&
-    $param_id == $_SESSION['id']
+    isset($_SESSION['user_id']) &&
+    $param_id == $_SESSION['user_id']
 ){
     header('Location: edit.php');
 }
@@ -27,7 +26,7 @@ if(
         <h1>ログイン画面</h1>
         <a href="./"><button>←トップに戻る</button></a>
         <hr>
-        <form action="check_2.php" method="post">
+        <form action="login_check.php" method="post">
             <table>
                 <tr>
                     <?php // GETでIDが渡されていない場合は、テキストボックスを表示する ?>
@@ -48,6 +47,6 @@ if(
                 <input type="reset" value="リセット">
             </p>
         </form>
-        <p>登録されていない場合は<a href="sign_up.php">ココ</a>から登録できます</p>
+        <p>登録されていない場合は<a href="signup.php">ココ</a>から登録できます</p>
     </body>
 </html>

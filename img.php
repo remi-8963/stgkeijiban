@@ -1,32 +1,38 @@
 <?php
 
-require('./dbconnect.php');
+require('./common.php');
 
 $sql = sprintf('SELECT name, play_style, active_time, comment FROM users WHERE id = %d',
-    mysqli_real_escape_string($db, $_GET['id'])
+    s($_GET['id'])
 );
 
-$reslut = mysqli_query($db,$sql) or die (mysqli_error($db));
+$result = mysqli_query($db,$sql) or die (mysqli_error($db));
 
-$row = mysqli_fetch_assoc($reslut);
+$row = mysqli_fetch_assoc($result);
 
 if (!$row) {
     header('Location: index.php');
     exit();
 }
 
-
+extract($row);
 
 $image = imagecreatefromjpeg('./template1.jpg');
 $icon_image = imagecreatefrompng('./icon_image.png');
 
 $textcolor = imagecolorallocate($image, 50, 50, 50);
 
-$name = $row['name'];
+$text_name = mb_convert_encoding($name, "UTF-8", "auto");
+imagettftext($image, 20, 0, 270, 345, $textcolor, './rounded-mplus-1c-bold.ttf', $text_name);
 
-$text = mb_convert_encoding($name, "UTF-8", "auto");
+$text_play_style = mb_convert_encoding($play_style, "UTF-8", "auto");
+imagettftext($image, 20, 0, 270, 428, $textcolor, './rounded-mplus-1c-bold.ttf', $text_play_style);
 
-imagettftext($image, 20, 0, 270, 345, $textcolor, './rounded-mplus-1c-bold.ttf', $text);
+$text_active_time = mb_convert_encoding($active_time, "UTF-8", "auto");
+imagettftext($image, 20, 0, 270, 508, $textcolor, './rounded-mplus-1c-bold.ttf', $text_active_time);
+
+$text_comment = mb_convert_encoding($comment, "UTF-8", "auto");
+imagettftext($image, 20, 0, 650, 400, $textcolor, './rounded-mplus-1c-bold.ttf', $text_comment);
 
 imagecopy($image, $icon_image, 0, 0, 0, 0, 600, 200);
 

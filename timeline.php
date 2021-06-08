@@ -1,34 +1,41 @@
 <?php
-    require('dbconnect.php'); // ← $db が宣言されてる
-    session_start();
-
+    require('common.php');
+    
     function print_comments($comment, $depth=0) {
       global $db;
-      $id = $comment['id'];
-      $user_id = $comment['user_id'];
-      $name = $comment['name'];
-      $text = $comment['text'];
-      $created_at = $comment['created_at'];
+      extract($comment);
+      // $id = $comment['id'];
+      // $user_id = $comment['user_id'];
+      // $name = $comment['name'];
+      // $text = $comment['text'];
+      // $created_at = $comment['created_at'];
       $margin_left = ($depth * 60).'px';
       ?>
-        <div style='margin-left: <?=$margin_left?>'>
-          <div>
-            <a href="user.php?id=<?=$user_id?>">
-              <div style="width: 50px; height: 50px; background-color:white; border-radius: 9999px; overflow: hidden">
-                <img src="https://englishlive.ef.com/ja-jp/blog/wp-content/uploads/sites/10/2019/03/10751058080_IMG_3159.jpg" style="display: inline-block; width: 100%; height: 100%">
-              </div>
-              <p><?=$name?></p>
+        <div style='margin-left: <?=h($margin_left)?>; margin-top: 10px; padding: 10px; background-color:#BEE5FF; border-radius: 10px'>
+          <?php if($depth > 0):?>
+            <img src="https://img.icons8.com/ios/452/reply-arrow.png" style="width:30px; margin:0">
+          <?php endif ?>
+          <div style="display:flex; align-items:center">
+            <div style="display:inline-block; width: 50px; height: 50px; background-color:white; border-radius: 9999px; overflow: hidden">
+              <img src="https://pbs.twimg.com/profile_images/1309957523089354760/uRrxAmOB_400x400.jpg" style="display: inline-block; width: 100%; height: 100%">
+            </div>
+            <a href="user.php?id=<?=h($user_id)?>" style="margin-left: 10px; text-decoration:none;">
+              <span><?=h($name)?></span>
             </a>
           </div>
-          <div>
-            <?=htmlspecialchars($text)?> <!--クロスサイトスプリクティング対策-->
+          <div style="margin-top:10px; padding:5px 10px; background-color:#F3FAFF; border-radius:5px">
+            <?=h($text)?> <!--クロスサイトスプリクティング対策-->
           </div>
-          <p>ID:  <a href="timeline.php?destination_comment_id=<?=$id?>"><button><?=$id?></button></a> 投稿日時: <?=$created_at?></p>
+          <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:10px">
+            <a href="?destination_comment_id=<?=$id?>">
+              <button>返信する</button>
+            </a>
+            <span style="color:#4084B0">投稿日時: <?=$created_at?></span>
+          </div>
         </div>
       <?php
       //$idでコメントを取ってくる
       //投稿に対する返信
-      echo $margin_left;
       $select_reply_comments = <<<SQL
       SELECT 
         timelines.id AS id,
@@ -48,6 +55,7 @@
         print_comments($replied_comment, $depth + 1);
       }
     }
+
     //おおもとのコメント
     $select_root_comments = <<<SQL
     SELECT 
@@ -64,7 +72,8 @@
 
     $root_comments = mysqli_query($db, $select_root_comments) or die(mysqli_error($db));
 
-    $id = $_SESSION['id'] ?? '';
+    $id = $_SESSION['user_id'] ?? '';
+    $destination_comment_id = $_GET['destination_comment_id'] ?? null
 ?>
 
 <!DOCTYPE html>
@@ -78,14 +87,25 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
 </head>
 <body>
+    <?=login_banner()?>
     <h1>タイムライン</h1>
-    <a href="user.php?id=<?=$id?>"><button>自分のプロフィールに戻る</button></a>
-    <?php if(isset($_SESSION['is_loggin']) && $_SESSION['is_loggin'] === true): ?>
+
+    <?php if(is_logged_in()): ?>
       <form action="timeline_create.php" method="post">
-        <p>返信先コメントID: <?=$_GET['destination_comment_id'] ?? ''?></p>
-        <input type="hidden" name="destination_comment_id" value="<?=$_GET['destination_comment_id'] ?? ''?>">
-        <textarea name="text" cols="30" row="3" required></textarea>
-        <input type="submit" value="投稿">
+        <table>
+          <?php if($destination_comment_id): ?>
+            <tr>
+              <input type="hidden" name="destination_comment_id" value="<?=$destination_comment_id?>">
+              <th>返信先コメント</th><td><?=mysqli_fetch_assoc(mysqli_query($db, "SELECT text FROM timelines WHERE id = $destination_comment_id"))['text']?></td>
+            </tr>
+          <?php endif; ?>
+          <tr>
+            <th>コメント</th><td><textarea name="text" cols="30" row="3" style="width:100%" required></textarea></td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="submit" value="投稿"></td>
+          </tr>
+        </table>
       </form>
     <?php else: ?>
       <p>ログインすると投稿できます。</p>

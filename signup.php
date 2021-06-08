@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
     </head>
     <body>
-        <form action="create.php" method="post">
+        <form action="user_create.php" method="post">
             <table border="1">
                 <caption>プロフィール作成</caption>
                 <?php foreach($form_data as $data): ?>

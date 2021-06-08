@@ -1,6 +1,6 @@
 <?php
 
-require('dbconnect.php');
+require('common.php');
 
 // $_GET['name']が入ってなかったら処理を終了
 $search_name = $_GET['name'] ?? null or die();
@@ -27,8 +27,10 @@ $match_users = mysqli_query($db, $sql) or die('SQLのエラー');
             <th>ID</th><th>ユーザ名</th>
         </tr>
         <?php while($match_user = mysqli_fetch_assoc($match_users)): ?>
-            <td><?=$match_user['id']?></td>
-            <td><a href="user.php?id=<?=$match_user['id']?>"><?=$match_user['name']?></a></td>
+            <tr>
+                <td><?=$match_user['id']?></td>
+                <td><a href="user.php?id=<?=$match_user['id']?>"><?=$match_user['name']?></a></td>
+            </tr>
         <?php endwhile; ?>
         </table>
     </body>
