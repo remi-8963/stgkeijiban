@@ -90,6 +90,7 @@
     <?php else: ?>
       <p>ログインすると投稿できます。</p>
     <?php endif ?>
+    
     <?php while($root_comment = mysqli_fetch_assoc($root_comments)): ?>
       <?php print_comments($root_comment) ?>
     <?php endwhile?>
