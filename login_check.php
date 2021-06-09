@@ -13,7 +13,7 @@ if(
 }
 
 $id = $_POST['id'];
-$password = $_POST['password'];
+$pass_word = $_POST['pass_word'];
 
 $sql = sprintf('SELECT id FROM users WHERE id = %d AND pass_word = "%s"', s($id), s($pass_word));
 

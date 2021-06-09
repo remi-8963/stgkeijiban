@@ -15,10 +15,9 @@ $active_time = $_POST['active_time'] ?? '';
 $comment = $_POST['comment'] ?? '';
 $is_vc = $_POST['is_vc'] ?? '';
 
-$sql = sprintf('UPDATE users SET name="%s", sex="%s", pass_word="%s", play_style="%s", active_time="%s", comment="%s", is_vc=%s WHERE id = %d',
+$sql = sprintf('UPDATE users SET name="%s", sex="%s", play_style="%s", active_time="%s", comment="%s", is_vc=%s WHERE id = %d',
     s($name),
     s($sex),
-    s($pass_word),
     s($play_style),
     s($active_time),
     s($comment),
