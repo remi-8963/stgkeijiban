@@ -11,7 +11,7 @@
       // $created_at = $comment['created_at'];
       $margin_left = ($depth * 60).'px';
       ?>
-        <div style='margin-left: <?=h($margin_left)?>; margin-top: 10px; padding: 10px; background-color:#BEE5FF; border-radius: 10px'>
+        <div style='margin-left: <?=h($margin_left)?>; margin-top: 10px; padding: 10px; background-color:#000000; border-radius: 10px'>
           <?php if($depth > 0):?>
             <img src="https://img.icons8.com/ios/452/reply-arrow.png" style="width:30px; margin:0">
           <?php endif ?>
@@ -23,10 +23,10 @@
               <span><?=h($name)?></span>
             </a>
           </div>
-          <div style="margin-top:10px; padding:5px 10px; background-color:#F3FAFF; border-radius:5px">
+          <!-- <div style="margin-top:10px; padding:5px 10px; background-color:#F3FAFF; border-radius:5px"> -->
             <?=h($text)?> <!--クロスサイトスプリクティング対策-->
           </div>
-          <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:10px">
+          <!-- <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:10px"> -->
             <a href="?destination_comment_id=<?=$id?>">
               <button>返信する</button>
             </a>

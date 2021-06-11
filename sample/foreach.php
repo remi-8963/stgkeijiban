@@ -1,6 +1,6 @@
 <?php
 //配列
-$array = ['みちや', 'もとき', 'なおき'];
+$array = ['みちや', 'もとき', 'なおきllll'];
 
 for ($i = 0; $i < count($array); $i++) {
   echo $array[$i] . "さん\n";
