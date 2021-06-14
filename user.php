@@ -2,15 +2,28 @@
     require('common.php');
     $id = ($_GET['id'] ?? null) or header('Location: index.php');
 
-    $sql = sprintf(<<<SQL
+    $sql_users = sprintf(<<<SQL
     SELECT name, sex, play_style, active_time, comment, is_vc
     FROM users
-    WHERE id = %d
+    WHERE users.id = %d
     SQL,
         s($id)
     );
 
-    $result = mysqli_query($db, $sql) or die(mysqli_error($db));
+    $sql_users_games = sprintf(<<<SQL
+    SELECT user_name,map,weapon,title,kill_rate,ranking
+    FROM users
+    join users_games
+    on users.id = users_games.user_id
+    join games
+    on users_games.game_id = games.id
+    WHERE users.id = %d
+    SQL,
+        s($id)
+    );  
+
+
+    $result = mysqli_query($db, $sql_users) or die(mysqli_error($db));
     $row = mysqli_fetch_assoc($result);
 
     // 指定されたIDが存在しないユーザの場合
@@ -42,7 +55,7 @@
         [
             "japanese" => "一言あれば",
             "form_name" => "comment",
-        ]
+        ],
     ];
 ?>
 
@@ -80,7 +93,28 @@
                 </td>
             </tr>
         </table>
-
+            <table>
+                <tr>
+                    <th>ゲーム名</th>
+                    <th>ユーザーネーム</th>
+                    <th>キルレート</th>
+                    <th>好きなマップ</th>
+                    <th>好きな武器</th>
+                    <th>ランク</th>
+                <tr>
+        <?php  $result_users_games = mysqli_query($db,$sql_users_games);
+            while($game = mysqli_fetch_assoc($result_users_games)):?>
+                <tr>
+                    <td><?=$game['title']?></td>
+                    <td><?=$game['user_name']?></td>
+                    <td><?=$game['kill_rate']?></td>
+                    <td><?=$game['map']?></td>
+                    <td><?=$game['weapon']?></td>
+                    <td><?=$game['ranking']?></td>
+                </tr>
+            
+            <?php endwhile;?>
+            </table>
         <a href="./"><button>トップページに戻る</button></a>
         <a href="https://twitter.com/intent/tweet?url=https://stgkeijiban.com/user?id=<?=h($id)?>&text=<?=h($name)?>さんのプロフィールをみにいこう！"><button>共有</button></a>
         <a href="login.php?id=<?=h($id)?>"><button>編集</button></a>
@@ -88,7 +122,3 @@
         <a href="signup.php"><button>自分のプロフィールも作ってみる！</button></a>
     </body>
 </html>
-
-
-
-
