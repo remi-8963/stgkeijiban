@@ -16,3 +16,10 @@ function s($str) {
 function is_logged_in() {
   return ($_SESSION['user_id'] ?? null) ? true : false;
 }
+
+function require_logged_in() {
+  if (!is_logged_in()) {
+    header('Location: index.php');
+    exit();
+  }
+}

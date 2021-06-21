@@ -1,4 +1,7 @@
 <?php
+
+// form_name = フォームのname = users_gamesテーブルのカラム
+
 $game_data = [
     [
         "japanese" => "ユーザーネーム",

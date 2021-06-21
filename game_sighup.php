@@ -1,6 +1,7 @@
 <?php
-    require("game_data.php");
-
+    require_once('common.php');
+    require_once("game_data.php");
+    
 ?>
 <!DOCTYPE html>
 <html>

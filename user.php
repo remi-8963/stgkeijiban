@@ -121,7 +121,7 @@
             <a href="login.php?id=<?=h($id)?>"><button>編集</button></a>
             <a href="timeline.php"><button>タイムライン</button></a>
             <a href="signup.php"><button>自分のプロフィールも作ってみる！</button></a>
-            <a href="game_sighup.php"><button>ゲームのプロフィールを作ってみる！</button></a>
+            <a href="user_game_list.php"><button>ゲームのプロフィールを作ってみる！</button></a>
 
         </body>
 </html>

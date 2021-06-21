@@ -22,7 +22,7 @@ if($user_name === '') {
 }
 
 
-$sql = sprintf('INSERT INTO users_games,user_id=1,game_id=2 SET user_name="%s",',
+$sql = sprintf('INSERT INTO users_games SET user_name="%s",',
     s($user_name)
 );
     
