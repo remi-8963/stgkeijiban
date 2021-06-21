@@ -115,10 +115,13 @@
             
             <?php endwhile;?>
             </table>
-        <a href="./"><button>トップページに戻る</button></a>
-        <a href="https://twitter.com/intent/tweet?url=https://stgkeijiban.com/user?id=<?=h($id)?>&text=<?=h($name)?>さんのプロフィールをみにいこう！"><button>共有</button></a>
-        <a href="login.php?id=<?=h($id)?>"><button>編集</button></a>
-        <a href="timeline.php"><button>タイムライン</button></a>
-        <a href="signup.php"><button>自分のプロフィールも作ってみる！</button></a>
-    </body>
+            <!-- <a href="img.php"><button>編集者用ページ</button></a> -->
+            <a href="./"><button>トップページに戻る</button></a>
+            <a href="https://twitter.com/intent/tweet?url=https://stgkeijiban.com/user?id=<?=h($id)?>&text=<?=h($name)?>さんのプロフィールをみにいこう！"><button>共有</button></a>
+            <a href="login.php?id=<?=h($id)?>"><button>編集</button></a>
+            <a href="timeline.php"><button>タイムライン</button></a>
+            <a href="signup.php"><button>自分のプロフィールも作ってみる！</button></a>
+            <a href="game_sighup.php"><button>ゲームのプロフィールを作ってみる！</button></a>
+
+        </body>
 </html>

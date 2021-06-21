@@ -31,7 +31,7 @@
                     <td><?=$user['id']?></td>
                     <td><?=$user['name']?></td>
                     <td><?=$user['is_vc'] ? 'VCできます' : 'VCできません'?></td>
-                    <td><a href="user.php?id=<?=$user['id']?>">リンク</a></td>
+                    <td><a href="user.php?id=<?=$user['id']?>">プロフィールへ</a></td>
                 </tr>
             <?php endwhile ?>
         </table>
