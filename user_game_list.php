@@ -48,9 +48,14 @@
                       <input type="submit" value="編集">
                     </form>
                   </td>
+                  
               </tr>
           <?php endwhile ?>
         </table>
+        
+              <form action="user_game_create.php" method="post">
+                <input type="hidden" name="game_id" value="<?=$user_game['game_id']?>">
+                <input type="submit" value="このゲームで新しく作る">     
     </body>
 </html>
 
