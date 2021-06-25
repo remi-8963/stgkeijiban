@@ -12,12 +12,12 @@
     );
 
     $sql_users_games = sprintf(<<<SQL
-    SELECT user_name,map,weapon,title,kill_rate,ranking
+    SELECT user_name, map, weapon, title, kill_rate, ranking
     FROM users
-    join users_games
-    on users.id = users_games.user_id
-    join games
-    on users_games.game_id = games.id
+    JOIN users_games
+    ON users.id = users_games.user_id
+    JOIN games
+    ON users_games.game_id = games.id
     WHERE users.id = %d
     SQL,
         s($id)
@@ -103,7 +103,7 @@
                     <th>好きな武器</th>
                     <th>ランク</th>
                 <tr>
-        <?php  $result_users_games = mysqli_query($db,$sql_users_games);
+        <?php  $result_users_games = mysqli_query($db,$sql_users_games) or die(mysqli_error($db));
             while($game = mysqli_fetch_assoc($result_users_games)):?>
                 <tr>
                     <td><?=$game['title']?></td>
@@ -113,19 +113,20 @@
                     <td><?=$game['weapon']?></td>
                     <td><?=$game['ranking']?></td>
                 </tr>
-            
             <?php endwhile;?>
             </table>
-            <a href="./"><button>トップページに戻る</button></a>
-            <a href="https://twitter.com/intent/tweet?url=https://stgkeijiban.com/user?id=<?=h($id)?>&text=<?=h($name)?>さんのプロフィールをみにいこう！"><button>共有</button></a>
-            <a href="login.php?id=<?=h($id)?>"><button>編集</button></a>
-            <a href="timeline.php"><button>タイムライン</button></a>
-            <a href="signup.php"><button>自分のプロフィールも作ってみる！</button></a>
-            <!-- <a href="img.php"><button>編集者用ページ</button></a> -->
-            <?php if($session_user_id): ?>
-            <a href="user_game_list.php"><button>ゲームのプロフィールを作ってみる！</button></a>
-            <?php else: ?>
-            <?php endif; ?>
+            <ul>
+                <?php if($session_user_id === $id): ?>
+                    <li><a href="login.php?id=<?=h($id)?>"><button>プロフィールの編集</button></a></li>
+                    <li><a href="user_game_list.php"><button>ゲームプロフィールの編集</button></a></li>
+                <?php endif ?>
+                <?php if(!$session_user_id): ?>
+                    <li><a href="signup.php"><button>自分のプロフィールも作ってみる！</button></a></li>
+                <?php endif ?>
+                <li><a href="./"><button>トップページに戻る</button></a></li>
+                <li><a href="https://twitter.com/intent/tweet?url=https://stgkeijiban.com/user?id=<?=h($id)?>&text=<?=h($name)?>さんのプロフィールをみにいこう！"><button>共有</button></a></li>
+                <li><a href="timeline.php"><button>タイムライン</button></a></li>
+            </ul>
             
         </body>
 </html>

@@ -35,5 +35,5 @@ SQL,
 );
 
 mysqli_query($db, $sql) or die(mysqli_error($db));
-header("Location: user.php?id=$user_id");
+header("Location: user_game_list.php");
 exit();

@@ -35,12 +35,16 @@
             <?php foreach($game_data as $data): ?>
                 <tr>
                     <td><?=$data['japanese']?></td>
-                    <td><input type="<?=$data['type']?>" name="<?=$data['form_name']?>" size="40" minlength="<?=$data['minlength']?>" maxlength="<?=$data['maxlength']?>" value="<?=$column[$data['form_name']]?>" <?=$data['required']?'required':''?>></td>
+                    <td><input type="<?=$data['type']?>" name="<?=$data['form_name']?>" size="40" minlength="<?=$data['minlength']?>" maxlength="<?=$data['maxlength']?>" value="<?=$column[$data['form_name']] ?? ''?>" <?=$data['required']?'required':''?>></td>
                 </tr>
             <?php endforeach; ?>
         </table>
         <input type="hidden" name="game_id" value="<?=$game_id?>">
         <input type="submit" value="更新">
+    </form>
+    <form action="user_game_delete.php" method="post">
+        <input type="hidden" name="game_id" value="<?=$game_id?>">
+        <input type="submit" value="削除">
     </form>
 </body>
 </html>

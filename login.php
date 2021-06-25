@@ -26,6 +26,7 @@ if(
         <h1>ログイン画面</h1>
         <a href="./"><button>←トップに戻る</button></a>
         <hr>
+        <p style="color:red"><?=$_GET['message'] ?? ''?></p>
         <form action="login_check.php" method="post">
             <table>
                 <tr>

@@ -21,7 +21,7 @@ $result = mysqli_query($db, $sql) or die(mysqli_error($db));
 
 // 一致するレコードが存在しない
 if (!mysqli_fetch_assoc($result)) {
-    header("Location: login.php?id=$id");
+    header("Location: login.php?id=$id&message=IDまたはパスワードが違います。");
     exit();
 }
 
