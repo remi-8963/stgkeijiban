@@ -2,28 +2,18 @@
 
 require('common.php');
 
-$id = ($_GET['id'] ?? null) or header('Location: index.php');
+$id = ($_POST['id'] ?? null) or header('Location: index.php');
 
-if(empty($_POST)) {
-    header('Location: signup.php?error=アクセスが不正です');
-    exit();
-}
-
-$user_name = $_POST['user_name'] ?? '';
-$kill_rate = $_POST['kill_rate'] ?? '';
-$map = $_POST['map'] ?? '';
-$weapon = $_POST['weapon'] ?? '';
-$ranking = $_POST['ranking'] ?? '';
+$game_title = $_POST['game_title'] ?? '';
 
 
-if($user_name === '') {
+if($game_title === '') {
     header('Location: signup.php?error=入力欄に空白が存在します');
     exit();
 }
 
-
-$sql = sprintf('INSERT INTO users_games SET user_name="%s",',
-    s($user_name)
+$sql = sprintf('INSERT INTO games SET title="%s"',
+    s($game_title)
 );
     
 mysqli_query($db,$sql)or die(mysqli_error($db));

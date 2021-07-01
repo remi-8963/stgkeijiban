@@ -7,6 +7,9 @@
    <!-- <header style="display:flex; align-items:center; justify-content:space-between"> -->
     <?php if($session_user_id): ?>
         <div>
+          <?php if($session_user_id == 1):?>
+            <a href="game_signup.php"><button>新規ゲームの追加</button>
+          <?php endif ?>
           <a href="/"><button>トップ</button></a>
           <a href="user.php?id=<?=$session_user_id?>"><button>マイプロフィール</button></a>
           <a href="logout.php"><button>ログアウト</button></a>

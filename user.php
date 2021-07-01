@@ -115,6 +115,7 @@
                 </tr>
             <?php endwhile;?>
             </table>
+
             <ul>
                 <?php if($session_user_id === $id): ?>
                     <li><a href="login.php?id=<?=h($id)?>"><button>プロフィールの編集</button></a></li>

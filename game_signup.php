@@ -1,6 +1,5 @@
 <?php
     require_once('common.php');
-    require_once("game_data.php");
     
 ?>
 <!DOCTYPE html>
@@ -18,14 +17,10 @@
     <body>
         <form action="game_create.php" method="post">
             <table border="1">
-                <caption>ゲームのプロフィール作成</caption>
-                <?php foreach($game_data as $data): ?>
-                    <tr><td><?=$data['japanese']?></td><td><input type="<?=$data['type']?>" name="<?=$data['form_name']?>" size="40" minlength="<?=$data['minlength']?>" maxlength="<?=$data['maxlength']?>"<?=$data['required']?'required':''?>></td></tr>
-                <?php endforeach; ?>
+                <caption>新規ゲームの登録</caption>
             </table>
-            <p id="red"><?$_GET['error']?></p>
-            <input type="submit" value="登録確認">
-            <input type="reset" value="リセット">
+            <input type="text" name="game_title" value="">
+            <input type="submit" value="登録">
         </form>
     </body>
 </html>

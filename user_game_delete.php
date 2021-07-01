@@ -1,12 +1,5 @@
 <?php
 
-// 主キーが被ったとき
-// ON DUPLICATE KEY UPDATE `kill_rate` = "$kill_rate", `map` = "$map", `weapon`  = $weapon, `ranking` = $ranking
-
-// UPSERT
-
-// list → edit → *update
-
 require_once('common.php');
 require_logged_in();
 
