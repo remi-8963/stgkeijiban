@@ -1,7 +1,8 @@
 <?php
     require('common.php');
 
-    $sql = 'SELECT id, name, is_vc FROM users';
+    $sql = 'SELECT id, name, is_vc, comment, play_style FROM users';
+
     $users = mysqli_query($db,$sql) or die(mysqli_error($db));
 ?>
 
@@ -30,7 +31,8 @@
                 <tr>
                     <td><?=$user['id']?></td>
                     <td><?=$user['name']?></td>
-                    <td><?=$user['is_vc'] ? 'VCできます' : 'VCできません'?></td>
+                    <td><?=$user['play_style']?></td>
+                    <td><?=$user['is_vc'] ? 'VC有り' : 'VC無し'?></td>
                     <td><a href="user.php?id=<?=$user['id']?>">プロフィールへ</a></td>
                 </tr>
             <?php endwhile ?>

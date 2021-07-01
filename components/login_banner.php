@@ -23,7 +23,7 @@
           </span>
         </div>
     <?php else: ?>
-          <a href="/"><button>トップ</button></a>
+          <a href="./"><button>トップ</button></a>
           <a href="login.php<?=$param?>"><button>ログイン</button></a>
     <?php endif; ?>
   </header>

@@ -1,6 +1,6 @@
 <?php
 
-require_once('./environment.php');
+require_once('environment.php');
 
 $db =  mysqli_connect('localhost',$DATABASE_USERNAME,$DATABASE_PASSWORD,$DATABASE_TABLE);
 

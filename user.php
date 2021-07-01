@@ -1,5 +1,6 @@
 <?php
     require('common.php');
+    exit('end');
     $id = ($_GET['id'] ?? null) or header('Location: index.php');
     $session_user_id = $_SESSION['user_id'] ?? false;
 
@@ -26,6 +27,8 @@
 
     $result = mysqli_query($db, $sql_users) or die(mysqli_error($db));
     $row = mysqli_fetch_assoc($result);
+    echo $row;
+    
 
     // 指定されたIDが存在しないユーザの場合
     if (!$row) {
