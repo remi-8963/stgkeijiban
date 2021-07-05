@@ -116,8 +116,8 @@
                 <?php if(!$session_user_id): ?>
                     <li><a href="signup.php"><button>自分のプロフィールも作ってみる！</button></a></li>
                 <?php endif ?>
-                <li><a href="./"><button>トップページに戻る</button></a></li>
-                <li><a href="https://twitter.com/intent/tweet?url=https://stgkeijiban.com/user?id=<?=h($id)?>&text=<?=h($name)?>さんのプロフィールをみにいこう！"><button>共有</button></a></li>
+                <li><a href="index.php"><button>トップページに戻る</button></a></li>
+                <li><a href="https://twitter.com/intent/tweet?url=https://stgkeijiban.com/~tklab2021/091/stgkeijiban/user?id=<?=h($id)?>&text=<?=h($name)?>さんのプロフィールをみにいこう！"><button>共有</button></a></li>
                 <li><a href="timeline.php"><button>タイムライン</button></a></li>
             </ul>
             
