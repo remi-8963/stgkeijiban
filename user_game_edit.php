@@ -5,11 +5,7 @@
     $user_id = $_SESSION['user_id'];
     $game_id = ($_POST['game_id'] ?? null) or header('Location: index.php');
 
-    $sql = sprintf(<<<SQL
-      SELECT game_id, title, is_fpp, user_id, kill_rate, map, weapon, ranking, user_name FROM games
-      JOIN users_games ON games.id = users_games.game_id
-      WHERE user_id = %d AND game_id = %d
-    SQL,
+    $sql = sprintf('SELECT game_id, title, is_fpp, user_id, kill_rate, map, weapon, ranking, user_name FROM games JOIN users_games ON games.id = users_games.game_id WHERE user_id = %d AND game_id = %d',
       s($user_id),
       s($game_id)
     );

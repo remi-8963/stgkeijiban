@@ -24,14 +24,9 @@ if($user_name === '') {
 }
 
 
-$sql = sprintf(<<<SQL
-INSERT INTO users_games (user_id, game_id, user_name, kill_rate, map, weapon, ranking)
-VALUES (%d, %d, "%s", %f, "%s", "%s", "%s")
-ON DUPLICATE KEY UPDATE
-`user_name` = "%s", `kill_rate` = %f, `map` = "%s", `weapon`  = "%s", `ranking` = "%s"
-SQL,
+$sql = sprintf('INSERT INTO users_games (user_id, game_id, user_name, kill_rate, map, weapon, ranking) VALUES (%d, %d, "%s", %f, "%s", "%s", "%s") ON DUPLICATE KEY UPDATE `user_name` = "%s", `kill_rate` = %f, `map` = "%s", `weapon`  = "%s", `ranking` = "%s"',
     s($user_id), s($game_id), s($user_name), s($kill_rate), s($map), s($weapon), s($ranking),
-    s($user_name), s($kill_rate), s($map), s($weapon), s($ranking),
+    s($user_name), s($kill_rate), s($map), s($weapon), s($ranking)
 );
 
 mysqli_query($db, $sql) or die(mysqli_error($db));
