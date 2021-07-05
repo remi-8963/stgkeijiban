@@ -4,11 +4,11 @@
     function print_comments($comment, $depth=0) {
       global $db;
       extract($comment);
-      // $id = $comment['id'];
-      // $user_id = $comment['user_id'];
-      // $name = $comment['name'];
-      // $text = $comment['text'];
-      // $created_at = $comment['created_at'];
+      $id = $comment['id'];
+      $user_id = $comment['user_id'];
+      $name = $comment['name'];
+      $text = $comment['text'];
+      $created_at = $comment['created_at'];
       $margin_left = ($depth * 60).'px';
       ?>
         <div style='margin-left: <?=h($margin_left)?>; margin-top: 10px; padding: 10px; background-color:#000000; border-radius: 10px'>
@@ -36,18 +36,8 @@
       <?php
       //$idでコメントを取ってくる
       //投稿に対する返信
-      $select_reply_comments = <<<SQL
-      SELECT 
-        timelines.id AS id,
-        timelines.user_id AS user_id,
-        timelines.text AS text,
-        timelines.created_at AS created_at,
-        users.name AS name
-      FROM timelines
-      JOIN users ON timelines.user_id = users.id
-      WHERE timelines.destination_comment_id = $id 
-      ORDER BY timelines.created_at DESC 
-      SQL;
+      $select_reply_comments = 'SELECT timelines.id AS id,timelines.user_id AS user_id,timelines.text AS text,timelines.created_at AS created_at,users.name AS name FROM timelines JOIN users ON timelines.user_id = users.id WHERE timelines.destination_comment_id = $id ORDER BY timelines.created_at DESC';
+      
       
       $replied_comments = mysqli_query($db, $select_reply_comments);
     
@@ -57,18 +47,7 @@
     }
 
     //おおもとのコメント
-    $select_root_comments = <<<SQL
-    SELECT 
-      timelines.id AS id,
-      timelines.user_id AS user_id,
-      timelines.text AS text,
-      timelines.created_at AS created_at,
-      users.name AS name
-    FROM timelines
-    JOIN users ON timelines.user_id = users.id
-    WHERE timelines.destination_comment_id IS NULL
-    ORDER BY timelines.created_at DESC
-    SQL;
+    $select_root_comments = 'SELECT timelines.id AS id,timelines.user_id AS user_id,timelines.text AS text,timelines.created_at AS created_at,users.name AS name FROM timelines JOIN users ON timelines.user_id = users.id WHERE timelines.destination_comment_id IS NULL ORDER BY timelines.created_at DESC';
 
     $root_comments = mysqli_query($db, $select_root_comments) or die(mysqli_error($db));
 

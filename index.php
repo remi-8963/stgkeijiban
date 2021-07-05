@@ -1,9 +1,9 @@
-<?php /*
+<?php 
     require('common.php');
 
     $sql = 'SELECT id, name, is_vc, comment, play_style FROM users';
 
-    $users = mysqli_query($db,$sql) or die(mysqli_error($db)); */
+    $users = mysqli_query($db,$sql) or die(mysqli_error($db)); 
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
         </form>
 
         <h2>一覧</h2>
-        <!--
+        
         <table>
             <?php while($user = mysqli_fetch_assoc($users)): ?>
                 <tr>
@@ -38,7 +38,7 @@
                 </tr>
             <?php endwhile ?>
         </table>
-        -->
+        
         <h2>リンク</h2>
         <a href="timeline.php"><button>タイムライン</button></a>
     </body>
