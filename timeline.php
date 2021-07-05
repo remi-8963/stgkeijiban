@@ -11,11 +11,12 @@
       $created_at = $comment['created_at'];
       $margin_left = ($depth * 60).'px';
       ?>
-        <div style='margin-left: <?=h($margin_left)?>; margin-top: 10px; padding: 10px; background-color:#000000; border-radius: 10px'>
+        <div style='margin-left: <?=h($margin_left)?>; margin-top: 10px; padding: 10px; background-color:#008080; border-radius: 10px'>
           <?php if($depth > 0):?>
             <img src="https://img.icons8.com/ios/452/reply-arrow.png" style="width:30px; margin:0">
           <?php endif ?>
           <div style="display:flex; align-items:center">
+          <!-- アイコン画像 -->
             <div style="display:inline-block; width: 50px; height: 50px; background-color:white; border-radius: 9999px; overflow: hidden">
               <img src="https://pbs.twimg.com/profile_images/1309957523089354760/uRrxAmOB_400x400.jpg" style="display: inline-block; width: 100%; height: 100%">
             </div>
@@ -26,7 +27,7 @@
           <!-- <div style="margin-top:10px; padding:5px 10px; background-color:#F3FAFF; border-radius:5px"> -->
             <?=h($text)?> <!--クロスサイトスプリクティング対策-->
           </div>
-          <!-- <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:10px"> -->
+          <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:10px">
             <a href="?destination_comment_id=<?=$id?>">
               <button>返信する</button>
             </a>
@@ -36,7 +37,7 @@
       <?php
       //$idでコメントを取ってくる
       //投稿に対する返信
-      $select_reply_comments = 'SELECT timelines.id AS id,timelines.user_id AS user_id,timelines.text AS text,timelines.created_at AS created_at,users.name AS name FROM timelines JOIN users ON timelines.user_id = users.id WHERE timelines.destination_comment_id = $id ORDER BY timelines.created_at DESC';
+      $select_reply_comments = 'SELECT timelines.id AS id, timelines.user_id AS user_id, timelines.text AS text, timelines.created_at AS created_at, users.name AS name FROM timelines JOIN users ON timelines.user_id = users.id WHERE timelines.destination_comment_id = $id ORDER BY timelines.created_at DESC';
       
       
       $replied_comments = mysqli_query($db, $select_reply_comments);
@@ -47,7 +48,7 @@
     }
 
     //おおもとのコメント
-    $select_root_comments = 'SELECT timelines.id AS id,timelines.user_id AS user_id,timelines.text AS text,timelines.created_at AS created_at,users.name AS name FROM timelines JOIN users ON timelines.user_id = users.id WHERE timelines.destination_comment_id IS NULL ORDER BY timelines.created_at DESC';
+    $select_root_comments = 'SELECT timelines.id AS id, timelines.user_id AS user_id, timelines.text AS text, timelines.created_at AS created_at, users.name AS name FROM timelines JOIN users ON timelines.user_id = users.id WHERE timelines.destination_comment_id IS NULL ORDER BY timelines.created_at DESC';
 
     $root_comments = mysqli_query($db, $select_root_comments) or die(mysqli_error($db));
 
