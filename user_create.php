@@ -32,7 +32,7 @@ $sql = sprintf('INSERT INTO users SET name="%s", sex="%s", pass_word="%s", play_
     s($play_style),
     s($active_time),
     s($comment),
-    s($is_vc == 1 ? 'TRUE' : 'FALSE'),
+    s($is_vc == 1 ? 'TRUE' : 'FALSE')
 );
 
 mysqli_query($db,$sql)or die(mysqli_error($db));
