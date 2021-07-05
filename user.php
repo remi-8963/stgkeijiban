@@ -16,7 +16,7 @@
 
     $result = mysqli_query($db, $sql_users) or die(mysqli_error($db));
     $row = mysqli_fetch_assoc($result);
-    echo $row;
+    
     
 
     // 指定されたIDが存在しないユーザの場合
