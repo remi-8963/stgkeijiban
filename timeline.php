@@ -23,7 +23,7 @@
               <span><?=h($name)?></span>
             </a>
           </div>
-          <!-- <div style="margin-top:10px; padding:5px 10px; background-color:#F3FAFF; border-radius:5px"> -->
+          <div style="margin-top:10px; padding:5px 10px; background-color:#F3FAFF; border-radius:5px">
             <?=h($text)?> <!--クロスサイトスプリクティング対策-->
           </div>
           <!-- <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:10px"> -->
