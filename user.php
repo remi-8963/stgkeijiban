@@ -61,7 +61,7 @@
         <meta property="og:title" content="<?=h($name)?>さんのプロフィール">
         <meta property="og:description" content="<?=h($name)?>さんのプロフィール"><!-- ページのディスクリプション -->
         <meta property="og:type" content="article"> <!-- ページの種類　-->
-        <meta property="og:image" content="https://stgkeijiban.com/img.php?id=<?=h($id)?>">
+        <meta property="og:image" content="https://stgkeijiban.com/~tklab2021/091/stgkeijiban/img.php?id=<?=h($id)?>">
         <meta property="og:url" content="https://stgkeijiban.com/~tklab2021/091/stgkeijiban"><!-- ページのURL -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="<?=h($name)?>さんの">                                                                                                                                                                                                                                                                      
@@ -71,7 +71,7 @@
     <body>
         <?=login_banner()?>
         <h1><?=h($name)?>さんのプロフィール</h1>
-        <img src="./img.php?id=<?=h($id)?>">
+        <img src="img.php?id=<?=h($id)?>">
         <table border="1">
             <?php foreach($form_data as $data): ?>
                 <tr>
