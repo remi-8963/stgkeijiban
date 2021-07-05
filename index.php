@@ -40,7 +40,7 @@
         </table>
         
         <h2>リンク</h2>
-        <a href="timeline.php"><button>タイムラインmmmmmm</button></a>
+        <a href="timeline.php"><button>タイムライン</button></a>
     </body>
 </html>
 
