@@ -6,9 +6,8 @@ $sql = sprintf('SELECT play_style, name, sex, active_time, comment FROM users WH
     s($_GET['id'])
 );
 
-$sql_users_games = sprintf(
-    'SELECT  title FROM games join users WHERE users.id = %d',
-    s($id)
+$sql_users_games = sprintf('SELECT  title, FROM games WHERE id = %d',
+    s($_GET['id'])
 );
 
 $result = mysqli_query($db,$sql) or die (mysqli_error($db));
