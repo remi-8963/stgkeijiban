@@ -26,11 +26,6 @@ $result_users_games = mysqli_query($db,$sql_users_games) or die(mysqli_error($db
 
 $row_games = mysqli_fetch_assoc($result_users_games);
 
-if (!$row_games) {
-    header('Location: index.php');
-    exit();
-}
-
 $image = imagecreatefromjpeg('./template1.jpg');
 $icon_image = imagecreatefrompng('./icon_image.png');
 
