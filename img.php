@@ -28,6 +28,7 @@ if(!$row_games){
     header('Location: index.php');
     exit();
 }
+echo $row_game;
 
 $image = imagecreatefromjpeg('./template1.jpg');
 $icon_image = imagecreatefrompng('./icon_image.png');
