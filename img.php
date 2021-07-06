@@ -7,7 +7,7 @@ $sql = sprintf('SELECT play_style, name, sex, active_time, comment FROM users WH
 );
 
 $sql_users_games = sprintf(
-    'SELECT user_name, map, weapon, title, kill_rate, ranking FROM users JOIN users_games ON users.id = users_games.user_id JOIN games ON users_games.game_id = games.id WHERE users.id = %d',
+    'SELECT  title FROM games join users WHERE users.id = %d',
     s($id)
 );
 
