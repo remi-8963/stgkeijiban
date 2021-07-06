@@ -6,6 +6,11 @@ $sql = sprintf('SELECT play_style,name, active_time, comment FROM users WHERE id
     s($_GET['id'])
 );
 
+$sql_users_games = sprintf(
+    'SELECT user_name, map, weapon, title, kill_rate, ranking FROM users JOIN users_games ON users.id = users_games.user_id JOIN games ON users_games.game_id = games.id WHERE users.id = %d',
+    s($id)
+);
+
 $result = mysqli_query($db,$sql) or die (mysqli_error($db));
 
 $row = mysqli_fetch_assoc($result);
@@ -16,6 +21,12 @@ if (!$row) {
 }
 
 extract($row);
+
+$result_users_games = mysqli_query($db,$sql_users_games) or die(mysqli_error($db));
+
+$row_game = mysqli_fetch_assoc($result_users_games);
+
+echo $row_game;
 
 $image = imagecreatefromjpeg('./template1.jpg');
 $icon_image = imagecreatefrompng('./icon_image.png');
