@@ -25,6 +25,11 @@
         <input type="submit" value="検索する">
         </form>
 
+        <h2>K/D検索</h2>
+        <form action="kill_rate_search.php" method="">
+        <input type="submit" value="k/d検索">
+        </form>
+
         <h2>一覧</h2>
         
         <table>
