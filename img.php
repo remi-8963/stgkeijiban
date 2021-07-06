@@ -2,9 +2,10 @@
 
 require('./common.php');
 
-$sql = sprintf('SELECT play_style,name, active_time, comment FROM users WHERE id = %d',
-    s($_GET['id'])
-);
+$sql = sprintf('SELECT user_name, map, weapon, title, kill_rate, ranking FROM users JOIN users_games ON users.id = users_games.user_id JOIN games ON users_games.game_id = games.id WHERE users.id = %d',
+    s($id)
+);  
+
 
 $result = mysqli_query($db,$sql) or die (mysqli_error($db));
 
@@ -21,6 +22,9 @@ $image = imagecreatefromjpeg('./template1.jpg');
 $icon_image = imagecreatefrompng('./icon_image.png');
 
 $textcolor = imagecolorallocate($image, 50, 50, 50);
+
+$text_title = mb_convert_encoding($title, "UTF-8", "auto");
+imagettftext($image, 20, 0, 270, 345, $textcolor, './rounded-mplus-1c-bold.ttf', $text_title);
 
 $text_name = mb_convert_encoding($name, "UTF-8", "auto");
 imagettftext($image, 20, 0, 270, 345, $textcolor, './rounded-mplus-1c-bold.ttf', $text_name);
