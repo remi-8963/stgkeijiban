@@ -1,8 +1,8 @@
 <?php
 
 require('./common.php');
-
-$sql = sprintf('SELECT name, play_style, active_time, comment FROM users WHERE id = %d',
+echo "sss";
+$sql = sprintf('SELECT play_style,name, active_time, comment FROM users WHERE id = %d',
     s($_GET['id'])
 );
 

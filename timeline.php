@@ -39,13 +39,13 @@
       //投稿に対する返信
       $select_reply_comments = 'SELECT timelines.id AS id, timelines.user_id AS user_id, timelines.text AS text, timelines.created_at AS created_at, users.name AS name FROM timelines JOIN users ON timelines.user_id = users.id WHERE timelines.destination_comment_id = $id ORDER BY timelines.created_at DESC';
       
-      
       $replied_comments = mysqli_query($db, $select_reply_comments);
-    
-      while($replied_comment = mysqli_fetch_assoc($replied_comments)) {
+
+      while($replied_comment = mysqli_fetch_assoc($replied_comments)){
         print_comments($replied_comment, $depth + 1);
       }
     }
+    
 
     //おおもとのコメント
     $select_root_comments = 'SELECT timelines.id AS id, timelines.user_id AS user_id, timelines.text AS text, timelines.created_at AS created_at, users.name AS name FROM timelines JOIN users ON timelines.user_id = users.id WHERE timelines.destination_comment_id IS NULL ORDER BY timelines.created_at DESC';
