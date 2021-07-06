@@ -26,12 +26,15 @@ $result_users_games = mysqli_query($db,$sql_users_games) or die(mysqli_error($db
 
 $row_game = mysqli_fetch_assoc($result_users_games);
 
-echo $row_game;
+extract($row_game);
 
 $image = imagecreatefromjpeg('./template1.jpg');
 $icon_image = imagecreatefrompng('./icon_image.png');
 
 $textcolor = imagecolorallocate($image, 50, 50, 50);
+
+$text_title = mb_convert_encoding($title, "UTF-8", "auto");
+imagettftext($image, 20, 0, 270, 345, $textcolor, './rounded-mplus-1c-bold.ttf', $text_title);
 
 $text_name = mb_convert_encoding($name, "UTF-8", "auto");
 imagettftext($image, 20, 0, 270, 345, $textcolor, './rounded-mplus-1c-bold.ttf', $text_name);
