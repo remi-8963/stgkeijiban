@@ -2,11 +2,11 @@
 
 require('./common.php');
 
-$sql = sprintf('SELECT play_style, name, sex, active_time, comment FROM users WHERE id = %d',
+$sql = sprintf("SELECT play_style, name, sex, active_time, comment FROM users WHERE id = %d",
     s($_GET['id'])
 );
 
-$sql_users_games = sprintf('SELECT title FROM users JOIN users_games ON users.id = users_games.user_id JOIN games ON users_games.game_id = games.id WHERE users.id = %d',
+$sql_users_games = sprintf("SELECT title FROM users JOIN users_games ON users.id = users_games.user_id JOIN games ON users_games.game_id = games.id WHERE users.id = %d",
     s($_GET['id'])
 );
 $result = mysqli_query($db,$sql) or die (mysqli_error($db));
@@ -33,6 +33,7 @@ $result_users_games = mysqli_query($db,$sql_users_games) or die(mysqli_error($db
 //     imagettftext($image, 30, 0, $x, $y, $textcolor, './rounded-mplus-1c-bold.ttf', $text_title);
 //     $y += 50;
 // }
+
 for($a=0;$a<3;$a++){
     for($i=0;$i<3;$i++){
         $row_games = mysqli_fetch_assoc($result_users_games);
