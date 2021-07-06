@@ -2,13 +2,13 @@
 
 require('./common.php');
 
-$sql = sprintf('SELECT play_style, name, sex, active_time, comment FROM users WHERE id = %d',
+$sql = sprintf('SELECT play_style, name, sex, active_time, comment,title FROM users join games WHERE id = %d',
     s($_GET['id'])
 );
 
-$sql_users_games = sprintf('SELECT  title, FROM games WHERE id = %d',
-    s($_GET['id'])
-);
+// $sql_users_games = sprintf('SELECT  title, FROM games WHERE id = %d',
+//     s($_GET['id'])
+// );
 
 $result = mysqli_query($db,$sql) or die (mysqli_error($db));
 
@@ -21,9 +21,9 @@ if (!$row) {
 
 extract($row);
 
-$result_users_games = mysqli_query($db,$sql_users_games) or die(mysqli_error($db));
+// $result_users_games = mysqli_query($db,$sql_users_games) or die(mysqli_error($db));
 
-$row_games = mysqli_fetch_assoc($result_users_games);
+// $row_games = mysqli_fetch_assoc($result_users_games);
 
 $image = imagecreatefromjpeg('./template1.jpg');
 $icon_image = imagecreatefrompng('./icon_image.png');
