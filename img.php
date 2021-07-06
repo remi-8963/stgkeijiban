@@ -36,8 +36,8 @@ $textcolor = imagecolorallocate($image, 50, 50, 50);
 $text_title = mb_convert_encoding($title, "UTF-8", "auto");
 imagettftext($image, 20, 0, 270, 345, $textcolor, './rounded-mplus-1c-bold.ttf', $text_title);
 
-$text_name = mb_convert_encoding($name, "UTF-8", "auto");
-imagettftext($image, 20, 0, 270, 345, $textcolor, './rounded-mplus-1c-bold.ttf', $text_name);
+// // $text_name = mb_convert_encoding($name, "UTF-8", "auto");
+// imagettftext($image, 20, 0, 270, 345, $textcolor, './rounded-mplus-1c-bold.ttf', $text_name);
 
 $text_play_style = mb_convert_encoding($play_style, "UTF-8", "auto");
 imagettftext($image, 20, 0, 270, 428, $textcolor, './rounded-mplus-1c-bold.ttf', $text_play_style);
