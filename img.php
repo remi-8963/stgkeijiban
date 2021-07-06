@@ -2,7 +2,7 @@
 
 require('./common.php');
 
-$sql = sprintf('SELECT play_style,name, active_time, comment FROM users WHERE id = %d',
+$sql = sprintf('SELECT play_style, name, sex, active_time, comment FROM users WHERE id = %d',
     s($_GET['id'])
 );
 
@@ -20,6 +20,8 @@ if (!$row) {
     exit();
 }
 
+
+
 extract($row);
 
 $result_users_games = mysqli_query($db,$sql_users_games) or die(mysqli_error($db));
@@ -31,8 +33,8 @@ $icon_image = imagecreatefrompng('./icon_image.png');
 
 $textcolor = imagecolorallocate($image, 50, 50, 50);
 
-$text_title = mb_convert_encoding($row_game['title'], "UTF-8", "auto");
-imagettftext($image, 20, 0, 270, 345, $textcolor, './rounded-mplus-1c-bold.ttf', $text_title);
+$text_sex = mb_convert_encoding($sex, "UTF-8", "auto");
+imagettftext($image, 20, 0, 270, 345, $textcolor, './rounded-mplus-1c-bold.ttf', $text_sex);
 
 $text_name = mb_convert_encoding($name, "UTF-8", "auto");
 imagettftext($image, 20, 0, 270, 345, $textcolor, './rounded-mplus-1c-bold.ttf', $text_name);
