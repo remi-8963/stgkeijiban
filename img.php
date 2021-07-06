@@ -22,8 +22,8 @@ extract($row);
 
 $result_users_games = mysqli_query($db,$sql_users_games) or die(mysqli_error($db));
 
-$row_games = mysqli_fetch_assoc($result_users_games);
-while($row_games):
+
+while($row_games = mysqli_fetch_assoc($result_users_games)):
 endwhile;
 
 
