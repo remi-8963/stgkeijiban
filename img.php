@@ -28,7 +28,8 @@ if(!$row_games){
     header('Location: index.php');
     exit();
 }
-echo $row_game;
+echo $row_games['id'];
+exit();
 
 $image = imagecreatefromjpeg('./template1.jpg');
 $icon_image = imagecreatefrompng('./icon_image.png');
