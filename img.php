@@ -2,8 +2,12 @@
 
 require('./common.php');
 
-$sql = sprintf(
-    'SELECT play_style, name, sex, active_time, comment, title FROM users JOIN users_games ON users.id = users_games.user_id JOIN games ON users_games.game_id = games.id WHERE users.id = %d',
+$sql = sprintf('SELECT play_style, name, sex, active_time, comment FROM users WHERE id = %d',
+    s($_GET['id'])
+);
+
+$sql_users_games = sprintf(
+    'SELECT user_name, map, weapon, title, kill_rate, ranking FROM users JOIN users_games ON users.id = users_games.user_id JOIN games ON users_games.game_id = games.id WHERE users.id = %d',
     s($id)
 );
 
@@ -18,10 +22,14 @@ if (!$row) {
 
 extract($row);
 
+$result_users_games = mysqli_query($db,$sql_users_games) or die(mysqli_error($db));
+
+$row_games = mysqli_fetch_assoc($result_users_games);
+
 $image = imagecreatefromjpeg('./template1.jpg');
 $icon_image = imagecreatefrompng('./icon_image.png');
 
-$text_title = mb_convert_encoding($row_games['title'], "UTF-8", "auto");
+$text_title = mb_convert_encoding($row_game['title'], "UTF-8", "auto");
 imagettftext($image, 20, 0, 270, 345, $textcolor, './rounded-mplus-1c-bold.ttf', $text_title);
 
 $text_name = mb_convert_encoding($name, "UTF-8", "auto");
