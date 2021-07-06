@@ -28,13 +28,11 @@ if(!$row_games){
     header('Location: index.php');
     exit();
 }
-echo $row_games['title'];
-exit();
 
 $image = imagecreatefromjpeg('./template1.jpg');
 $icon_image = imagecreatefrompng('./icon_image.png');
 
-$text_title = mb_convert_encoding($row_game['title'], "UTF-8", "auto");
+$text_title = mb_convert_encoding($row_games['title'], "UTF-8", "auto");
 imagettftext($image, 20, 0, 270, 345, $textcolor, './rounded-mplus-1c-bold.ttf', $text_title);
 
 $text_name = mb_convert_encoding($name, "UTF-8", "auto");
