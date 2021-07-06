@@ -28,7 +28,7 @@ $row_games = mysqli_fetch_assoc($result_users_games);
 $image = imagecreatefromjpeg('./template1.jpg');
 $icon_image = imagecreatefrompng('./icon_image.png');
 
-$text_title = mb_convert_encoding($row_game['title'], "UTF-8", "auto");
+$text_title = mb_convert_encoding($sex, "UTF-8", "auto");
 imagettftext($image, 20, 0, 270, 345, $textcolor, './rounded-mplus-1c-bold.ttf', $text_title);
 
 $text_name = mb_convert_encoding($name, "UTF-8", "auto");
