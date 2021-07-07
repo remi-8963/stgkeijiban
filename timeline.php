@@ -13,7 +13,7 @@
       ?>
         <div style='margin-left: <?=h($margin_left)?>; margin-top: 10px; padding: 10px; background-color:#008080; border-radius: 10px'>
           <?php if($depth > 0):?>
-            <img src="https://img.icons8.com/ios/452/reply-arrow.png" style="width:30px; margin:0">
+            <!-- <img src="https://img.icons8.com/ios/452/reply-arrow.png" style="width:30px; margin:0"> -->
           <?php endif ?>
           <div style="display:flex; align-items:center">
           <!-- アイコン画像 -->

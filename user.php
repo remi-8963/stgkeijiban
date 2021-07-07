@@ -64,7 +64,7 @@
         <meta property="og:image" content="https://stgkeijiban.com/~tklab2021/091/stgkeijiban/img.php?id=<?=h($id)?>">
         <meta property="og:url" content="https://stgkeijiban.com/~tklab2021/091/stgkeijiban"><!-- ページのURL -->
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="<?=h($name)?>さんの">                                                                                                                                                                                                                                                                      
+        <meta name="twitter:title" content="<?=h($name)?>さんのプロフィール">                                                                                                                                                                                                                                                                      
         <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
     </head>

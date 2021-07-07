@@ -19,6 +19,8 @@ $games = mysqli_query($db,$sql) or die(mysqli_error($db));
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
     </head>
     <body>
+        <?=login_banner()?>
+        <h1>検索するゲームの選択</h1>
         <form action="" method="GET">
             <select name="game_id">
                 <option value="">選択してください</option>
@@ -29,7 +31,7 @@ $games = mysqli_query($db,$sql) or die(mysqli_error($db));
             </select>
         </form>
 
-        <a href="index.php"><button>トップページに戻る</button></a>
+        
 
        
 
