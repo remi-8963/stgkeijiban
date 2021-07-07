@@ -29,6 +29,8 @@ $games = mysqli_query($db,$sql) or die(mysqli_error($db));
             </select>
         </form>
 
+        <a href="index.php"><button>トップページに戻る</button></a>
+
        
 
             
