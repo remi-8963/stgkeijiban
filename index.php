@@ -26,7 +26,10 @@
         </form>
 
         <h2>K/D検索</h2>
-        <form action="kill_rate_search.php" method="">
+        <form action="kill_rate_search.php" method="GET">
+        <input type="hidden" name="game_id" value="1">
+        <input type="hidden" name="min_kill_rate" value="0">
+        <input type="hidden" name="max_kill_rate" value="1">
         <input type="submit" value="k/d検索">
         </form>
 

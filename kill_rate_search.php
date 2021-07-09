@@ -26,11 +26,10 @@ $games = mysqli_query($db,$sql) or die(mysqli_error($db));
     </head>
     <body>
         <?=login_banner()?>
-    <!-- ゲーム検索 -->
-        <h3>検索するゲームの選択</h3>
+    <!-- ゲーム指定 -->
+        <h3>検索するゲーム選択</h3>
         <form action="" method="GET">
             <select name="game_id">
-                <option value="">選択してください</option>
                 <?php while($game = mysqli_fetch_assoc($games)):?>
                 <option value="<?=$game['id']?>" <?=($_GET['game_id'] == $game['id']) ? 'selected' : ''?>><?=$game['title']?></option>" : " "
                 <?php endwhile ?> 
@@ -50,7 +49,7 @@ $games = mysqli_query($db,$sql) or die(mysqli_error($db));
             ." WHERE kill_rate >= ".$_GET['min_kill_rate']." AND kill_rate <= ".$_GET['max_kill_rate']." AND game_id = ".$_GET['game_id'];
         $kill_rates = mysqli_query($db,$sql_kill_rate) or die(mysqli_error($db));
         ?>
-        
+        <h3>検索結果</h3>
         <table>
             <tr>
                 <th>ID</th>

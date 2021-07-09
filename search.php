@@ -3,7 +3,7 @@
 require('common.php');
 
 // $_GET['name']が入ってなかったら処理を終了
-$search_name = $_GET['name'] ?? null or die();
+$search_name = $_GET['name'] ?? null or header('Location: index.php');
 
 $sql = "SELECT id, name FROM users WHERE name LIKE '%$search_name%' ORDER BY name DESC";
 
