@@ -44,24 +44,26 @@ $games = mysqli_query($db,$sql) or die(mysqli_error($db));
         </form>
 
         <?php
-        $sql_kill_rate = "SELECT id,user_name,kill_rate FROM users"
+        $sql_game_date = "SELECT id,name,user_name,kill_rate FROM users"
             ." JOIN users_games ON users.id = users_games.user_id"
             ." WHERE kill_rate >= ".$_GET['min_kill_rate']." AND kill_rate <= ".$_GET['max_kill_rate']." AND game_id = ".$_GET['game_id'];
-        $kill_rates = mysqli_query($db,$sql_kill_rate) or die(mysqli_error($db));
+        $game_dates = mysqli_query($db,$sql_game_date) or die(mysqli_error($db));
         ?>
-        <h3>検索結果</h3>
+        <h3>検索結果(<?=mysqli_num_rows($game_dates)?>件)</h3>
         <table>
             <tr>
                 <th>ID</th>
+                <th>サイトユーザー名</th>
                 <th>ゲームユーザー名</th>
                 <th>K/D</th>
             </tr>
 
-        <?php while($kill_rate = mysqli_fetch_assoc($kill_rates)):?>   
+        <?php while($game_date = mysqli_fetch_assoc($game_dates)):?>   
             <tr>
-                <td><?=$kill_rate['id']?></td>
-                <td><a href="user.php?id=<?=$kill_rate['id']?>"><?=$kill_rate['user_name']?></a></td>
-                <td><?=$kill_rate['kill_rate']?></td>
+                <td><?=$game_date['id']?></td>
+                <td><a href="user.php?id=<?=$game_date['id']?>"><?=$game_date['name']?></a></td>
+                <td><?=$game_date['user_name']?></td>
+                <td><?=$game_date['kill_rate']?></td>
             </tr>
         <?php endwhile ?>
         </table>

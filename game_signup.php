@@ -19,7 +19,10 @@
             <table border="1">
                 <caption>新規ゲームの登録</caption>
             </table>
+            <P>新規ゲーム名</p>
             <input type="text" name="game_title" value="">
+            <p>fpp = 1,tpp = 0</p>
+            <input type="text" name="is_fpp" value="">
             <input type="submit" value="登録">
         </form>
     </body>
