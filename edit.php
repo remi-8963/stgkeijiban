@@ -9,7 +9,7 @@ if (!$id) {
     exit();
 }
 
-$sql = sprintf('SELECT name, sex, play_style, active_time, comment, is_vc FROM users WHERE id = %d', s($id));
+$sql = sprintf('SELECT name, sex, play_style, active_time, comment, is_vc, twitter_id FROM users WHERE id = %d', s($id));
 $row = mysqli_fetch_assoc(mysqli_query($db,$sql));
 
 if (!$row) {

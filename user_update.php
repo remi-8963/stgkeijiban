@@ -13,14 +13,16 @@ $sex = $_POST['sex'] ?? '';
 $play_style = $_POST['play_style'] ?? '';
 $active_time = $_POST['active_time'] ?? '';
 $comment = $_POST['comment'] ?? '';
+$twitter_id = $_POST['twitter_id'] ?? '';
 $is_vc = $_POST['is_vc'] ?? '';
 
-$sql = sprintf('UPDATE users SET name="%s", sex="%s", play_style="%s", active_time="%s", comment="%s", is_vc=%s WHERE id = %d',
+$sql = sprintf('UPDATE users SET name="%s", sex="%s", play_style="%s", active_time="%s", comment="%s", twitter_id="%s", is_vc=%s WHERE id = %d',
     s($name),
     s($sex),
     s($play_style),
     s($active_time),
     s($comment),
+    s($twitter_id),
     s($is_vc == 1 ? 'TRUE' : 'FALSE'),
     s($user_id)
 );

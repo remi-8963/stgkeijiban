@@ -1,7 +1,7 @@
 <?php
 $form_data = [
     [
-        "japanese" => "ユーザネーム",
+        "japanese" => "ユーザネーム(必須)",
         "type" => "text",
         "form_name" => "name",
         "minlength" => 0,
@@ -36,6 +36,14 @@ $form_data = [
         "japanese" => "一言あれば",
         "type" => "text",
         "form_name" => "comment",
+        "minlength" => 0,
+        "maxlength" => 255,
+        "required" => false,
+    ],
+    [
+        "japanese" => "自身のtwitterのID(@から下)",
+        "type" => "text",
+        "form_name" => "twitter_id",
         "minlength" => 0,
         "maxlength" => 255,
         "required" => false,

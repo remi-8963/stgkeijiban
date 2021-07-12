@@ -1,7 +1,7 @@
 <?php
     require("form_data.php");
 
-    array_push($form_data,["japanese" => "パスワード",
+    array_push($form_data,["japanese" => "パスワード(必須)",
     "type" => "password",
     "form_name" => "pass_word",
     "minlength" => 0,

@@ -4,7 +4,7 @@
 
 $game_data = [
     [
-        "japanese" => "ユーザーネーム",
+        "japanese" => "ユーザーネーム(必須)",
         "type" => "text",
         "form_name" => "user_name",
         "minlength" => 0,
@@ -12,12 +12,12 @@ $game_data = [
         "required" => true,
     ],
     [
-        "japanese" => "キルレート",
+        "japanese" => "キルレート(必須)",
         "type" => "text",
         "form_name" => "kill_rate",
         "minlength" => 0,
         "maxlength" => 255,
-        "required" => false,
+        "required" => true,
     ],
     [
         "japanese" => "好きなマップ",
