@@ -27,5 +27,5 @@ if (!mysqli_fetch_assoc($result)) {
 
 $_SESSION['user_id'] = $id;
 
-header("Location: edit.php");
+header("Location: user.php?id=$id");
 exit();
