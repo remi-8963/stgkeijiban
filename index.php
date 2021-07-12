@@ -1,6 +1,8 @@
 <?php 
     require('common.php');
 
+    $session_user_id = $_SESSION['user_id'] ?? false;
+
     $sql = 'SELECT id, name, is_vc, comment, play_style FROM users';
 
     $users = mysqli_query($db,$sql) or die(mysqli_error($db)); 
@@ -48,7 +50,11 @@
         </table>
         
         <h2>リンク</h2>
+        <?php if(!$session_user_id): ?>
+            <a href="signup.php"><button>自分のプロフィールも作ってみる！</button></a>
+        <?php endif ?>
         <a href="timeline.php"><button>タイムライン</button></a>
+
     </body>
 </html>
 
