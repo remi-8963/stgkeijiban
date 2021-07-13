@@ -51,7 +51,7 @@
         
         <h2>リンク</h2>
         <?php if(!$session_user_id): ?>
-            <a href="signup.php"><button>自分のプロフィールも作ってみる！</button></a>
+            <a href="signup.php"><button>自分のプロフィールを作ってみる！</button></a>
         <?php endif ?>
         <a href="timeline.php"><button>タイムライン</button></a>
 

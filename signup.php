@@ -44,5 +44,6 @@
             <input type="submit" value="登録確認">
             <input type="reset" value="リセット">
         </form>
+        <a href="index.php"><button>トップページに戻る</button></a>
     </body>
 </html>
