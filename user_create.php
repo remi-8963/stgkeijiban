@@ -13,6 +13,7 @@ $pass_word = $_POST['pass_word'] ?? '';
 $play_style = $_POST['play_style'] ?? '';
 $active_time = $_POST['active_time'] ?? '';
 $comment = $_POST['comment'] ?? '';
+$twitter_id = $_POST['twitter_id'] ?? '';
 $is_vc = $_POST['is_vc'] ?? '';
 
 if($name === '' || $pass_word === '') {
@@ -25,13 +26,14 @@ if (strlen($pass_word) < 4) {
     exit();
 }
 
-$sql = sprintf('INSERT INTO users SET name="%s", sex="%s", pass_word="%s", play_style="%s", active_time="%s", comment="%s", is_vc=%s',
+$sql = sprintf('INSERT INTO users SET name="%s", sex="%s", pass_word="%s", play_style="%s", active_time="%s", comment="%s",twitter_id="%s", is_vc=%s',
     s($name),
     s($sex),
     s($pass_word),
     s($play_style),
     s($active_time),
     s($comment),
+    s($twitter_id),
     s($is_vc == 1 ? 'TRUE' : 'FALSE')
 );
 
