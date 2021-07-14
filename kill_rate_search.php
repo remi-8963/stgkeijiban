@@ -44,7 +44,7 @@ $games = mysqli_query($db,$sql) or die(mysqli_error($db));
         </form>
 
         <?php
-        $sql_game_date = "SELECT id,name,user_name,kill_rate FROM users"
+        $sql_game_date = "SELECT id,name,user_name,kill_rate,play_style FROM users"
             ." JOIN users_games ON users.id = users_games.user_id"
             ." WHERE kill_rate >= ".$_GET['min_kill_rate']." AND kill_rate <= ".$_GET['max_kill_rate']." AND game_id = ".$_GET['game_id'];
         $game_dates = mysqli_query($db,$sql_game_date) or die(mysqli_error($db));
@@ -56,6 +56,7 @@ $games = mysqli_query($db,$sql) or die(mysqli_error($db));
                 <th>サイトユーザー名</th>
                 <th>ゲームユーザー名</th>
                 <th>K/D</th>
+                <th>プレイスタイル</th>
             </tr>
 
         <?php while($game_date = mysqli_fetch_assoc($game_dates)):?>   
@@ -64,6 +65,7 @@ $games = mysqli_query($db,$sql) or die(mysqli_error($db));
                 <td><a href="user.php?id=<?=$game_date['id']?>"><?=$game_date['name']?></a></td>
                 <td><?=$game_date['user_name']?></td>
                 <td><?=$game_date['kill_rate']?></td>
+                <td><?=$game_date['play_style']?></td>
             </tr>
         <?php endwhile ?>
         </table>
