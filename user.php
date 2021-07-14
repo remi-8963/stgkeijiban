@@ -73,7 +73,7 @@
     </head>
     <body>
         <?=login_banner()?>
-        <h1><?=h($name)?>さんのプロフィール</h1>
+        <h1><?=h($name)?>さんのプロフィール　　　　　　　ID:<?=h($id)?></h1>
         <img src="img.php?id=<?=h($id)?>">
         <table border="1">
             <?php foreach($form_data as $data): ?>
