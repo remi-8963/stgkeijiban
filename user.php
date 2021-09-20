@@ -9,7 +9,7 @@
     );
 
     $sql_users_games = sprintf(
-        "SELECT user_name, map, weapon, title, kill_rate, ranking, is_fpp FROM users JOIN users_games ON users.id = users_games.user_id JOIN games ON users_games.game_id = games.id WHERE users.id = %d",
+        "SELECT user_name, map, weapon, title, kill_rate, damage, ranking, is_fpp FROM users JOIN users_games ON users.id = users_games.user_id JOIN games ON users_games.game_id = games.id WHERE users.id = %d",
         s($id)
     );  
 
@@ -93,6 +93,7 @@
                 <!-- <th>ゲームタイプ</th> -->
                 <th>ユーザーネーム</th>
                 <th>キルレート</th>
+                <th>平均ダメージ</th>
                 <th>好きなマップ</th>
                 <th>好きな武器</th>
                 <th>ランク</th>
@@ -111,6 +112,7 @@
                     <!-- <td><?=$game['is_fpp'] ? 'FPP':'TPP'?></td> -->
                     <td><?=$game['user_name']?></td>
                     <td><?=$game['kill_rate']?></td>
+                    <td><?=$game['damage']?></td>
                     <td><?=$game['map']?></td>
                     <td><?=$game['weapon']?></td>
                     <td><?=$game['ranking']?></td>

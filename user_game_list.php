@@ -5,7 +5,7 @@
 
     $user_id = $_SESSION['user_id'];
 
-    $sql = sprintf('SELECT games.id AS game_id,title,is_fpp,user_id,kill_rate,map,weapon,ranking,user_name FROM games LEFT OUTER JOIN(SELECT * FROM users_games WHERE user_id = %d) AS users_games ON games.id = users_games.game_id',
+    $sql = sprintf('SELECT games.id AS game_id,title,is_fpp,user_id,kill_rate,damage,map,weapon,ranking,user_name FROM games LEFT OUTER JOIN(SELECT * FROM users_games WHERE user_id = %d) AS users_games ON games.id = users_games.game_id',
     s($user_id)
     );
 
@@ -42,7 +42,7 @@
                       <td><?=$user_game[$game['form_name']]?></td>
                     <?php endforeach ?>
                   <?php else: ?>
-                    <td colspan="5"></td>
+                    <td colspan="6"></td>
                   <?php endif ?>
                     <td>
                       <form action="user_game_edit.php" method="post">

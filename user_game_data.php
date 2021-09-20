@@ -20,6 +20,14 @@ $game_data = [
         "required" => true,
     ],
     [
+        "japanese" => "平均ダメージ",
+        "type" => "text",
+        "form_name" => "damage",
+        "minlength" => 0,
+        "maxlength" => 255,
+        "required" => false,
+    ],
+    [
         "japanese" => "好きなマップ",
         "type" => "text",
         "form_name" => "map",

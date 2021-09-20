@@ -19,32 +19,40 @@
     </head>
     <body>
         <?=login_banner()?>
-        <h1>トップページ</h1>
+        <h1>FPS.TPSゲーム専用交流サイト</h1>
 
-        <h2>検索</h2>
+        <h2>名前検索</h2>
         <form action="search.php" method="GET">
-        <input type="text" name="name">
-        <input type="submit" value="検索する">
+            <input type="text" name="name">
+            <input type="submit" value="検索する">
         </form>
 
         <h2>K/D検索</h2>
         <form action="kill_rate_search.php" method="GET">
-        <input type="hidden" name="game_id" value="1">
-        <input type="hidden" name="min_kill_rate" value="0">
-        <input type="hidden" name="max_kill_rate" value="1">
-        <input type="submit" value="k/d検索">
+            <input type="hidden" name="game_id" value="1">
+            <input type="hidden" name="min_kill_rate" value="0">
+            <input type="hidden" name="max_kill_rate" value="1">
+            <input type="submit" value="k/d検索">
         </form>
 
-        <h2>一覧</h2>
+        <h2>ユーザー一覧</h2>
         
         <table>
+
+            <tr>
+                <th>ID</th>
+                <th>サイトユーザー名</th>
+                <th>プレイスタイル</th>
+                <th>VCの有無</th>
+            </tr>
+
             <?php while($user = mysqli_fetch_assoc($users)): ?>
+
                 <tr>
-                    <td><?=$user['id']?></td>
+                    <td><a href="user.php?id=<?=$user['id']?>"><?=$user['id']?></a></td>
                     <td><?=$user['name']?></td>
                     <td><?=$user['play_style']?></td>
                     <td><?=$user['is_vc'] ? 'VC有り' : 'VC無し'?></td>
-                    <td><a href="user.php?id=<?=$user['id']?>">プロフィールへ</a></td>
                 </tr>
             <?php endwhile ?>
         </table>
