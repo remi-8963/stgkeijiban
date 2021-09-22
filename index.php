@@ -61,7 +61,11 @@
         <?php if(!$session_user_id): ?>
             <a href="signup.php"><button>自分のプロフィールを作ってみる！</button></a>
         <?php endif ?>
-        <a href="timeline.php"><button>タイムライン</button></a>
+        <!-- <a href="timeline.php"><button>タイムライン</button></a> -->
+        <form action="timeline.php" method="POST">
+            <input type="hidden" name="game_id" value="0">
+            <input type="submit" value="タイムライン">
+        </form>
 
     </body>
 </html>

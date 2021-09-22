@@ -1,5 +1,10 @@
 <?php
     require('common.php');
+
+    $sql = "SELECT id,title FROM games";
+    // $sql = "SELECT title,id,game_id FROM games JOIN timelines ON games.id = timelines.game_id";
+
+    $games = mysqli_query($db,$sql) or die(mysqli_error($db));
     
     function print_comments($comment, $depth=0) {
       global $db;
@@ -71,8 +76,17 @@
     <h1>タイムライン</h1>
     <a href="index.php"><button style="margin: 10px 0">← トップページ</button></a>
 
+    <h3>タイムラインの選択</h3>
+
     <?php if(is_logged_in()): ?>
-      <form action="timeline_create.php" method="post">
+
+      <form action="timeline_create.php" method="POST">
+        <select name="game_id">
+          <?php while($game = mysqli_fetch_assoc($games)):?>
+          <option value="<?=$game['id']?>" <?=($_POST['game_id'] == $game['id']) ? 'selected' : ''?>><?=$game['title']?></option>" : " "     
+          <?php endwhile ?> 
+        </select>
+
         <table>
           <?php if($destination_comment_id): ?>
             <tr>
