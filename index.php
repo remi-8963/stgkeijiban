@@ -6,6 +6,10 @@
     $sql = 'SELECT id, name, is_vc, comment, play_style FROM users';
 
     $users = mysqli_query($db,$sql) or die(mysqli_error($db)); 
+
+    $games_sql = "SELECT id,title FROM games";
+
+    $games = mysqli_query($db,$games_sql) or die(mysqli_error($db));
 ?>
 
 <!DOCTYPE html>
@@ -63,9 +67,17 @@
         <?php endif ?>
         <!-- <a href="timeline.php"><button>タイムライン</button></a> -->
         <form action="timeline.php" method="POST">
-            <input type="hidden" name="game_id" value="0">
-            <input type="submit" value="タイムライン">
+        <select name="game_id">
+          <?php while($game = mysqli_fetch_assoc($games)):?>
+          <option value="<?=$game['id']?>" <?=($_POST['game_id'] == $game['id']) ? 'selected' : ''?>><?=$game['title']?></option>" : " "     
+          <?php endwhile ?> 
+          <input type="submit" value="タイムラインへ">
+        </select>
         </form>
+        <!-- <form action="timeline.php" method="POST">
+            <input type="hidden" name="game_id" value="2">
+            <input type="submit" value="タイムライン">
+        </form> -->
 
     </body>
 </html>
