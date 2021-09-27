@@ -42,7 +42,7 @@
       <?php
       //$idでコメントを取ってくる
       //投稿に対する返信
-      $select_reply_comments = "SELECT timelines.id AS id, timelines.user_id AS user_id, timelines.game_id AS game_id, timelines.text AS text, timelines.created_at AS created_at, users.name AS name FROM timelines JOIN users ON timelines.user_id = users.id WHERE game_id = ".$_POST['game_id']." AND timelines.destination_comment_id = $id ORDER BY timelines.created_at DESC";
+      $select_reply_comments = "SELECT timelines.id AS id, timelines.user_id AS user_id, timelines.text AS text, timelines.created_at AS created_at, users.name AS name FROM timelines JOIN users ON timelines.user_id = users.id WHERE timelines.destination_comment_id = $id ORDER BY timelines.created_at DESC";
       
       $replied_comments = mysqli_query($db, $select_reply_comments);
       
@@ -55,7 +55,7 @@
     //おおもとのコメント
     // $select_root_comments = "SELECT timelines.id AS id, timelines.user_id AS user_id, timelines.text AS text, timelines.created_at AS created_at, users.name AS name FROM timelines JOIN users ON timelines.user_id = users.id WHERE timelines.destination_comment_id IS NULL ORDER BY timelines.created_at DESC";
 
-    $select_root_comments = "SELECT timelines.id AS id, timelines.user_id AS user_id, timelines.text AS text, timelines.created_at AS created_at, users.name AS name, timelines.game_id AS game_id FROM timelines JOIN users ON timelines.user_id = users.id WHERE game_id = ".$_POST['game_id']." AND timelines.destination_comment_id IS NULL ORDER BY timelines.created_at DESC";
+    $select_root_comments = "SELECT timelines.id AS id, timelines.user_id AS user_id, timelines.text AS text, timelines.created_at AS created_at, users.name AS name, timelines.game_id AS game_id FROM timelines JOIN users ON timelines.user_id = users.id WHERE timelines.destination_comment_id IS NULL ORDER BY timelines.created_at DESC";
     
     $root_comments = mysqli_query($db, $select_root_comments) or die(mysqli_error($db));
 
