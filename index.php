@@ -65,11 +65,19 @@
         <?php if(!$session_user_id): ?>
             <a href="signup.php"><button>自分のプロフィールを作ってみる！</button></a>
         <?php endif ?>
-        
-        <form action="timeline.php" method="POST">
+        <!-- <a href="timeline.php"><button>タイムライン</button></a> -->
+        <form action="timeline.php" method="GET">
+        <select name="game_id">
+          <?php while($game = mysqli_fetch_assoc($games)):?>
+          <option value="<?=$game['id']?>" <?=($_POST['game_id'] == $game['id']) ? 'selected' : ''?>><?=$game['title']?></option>" : " "     
+          <?php endwhile ?> 
+          <input type="submit" value="タイムラインへ">
+        </select>
+        </form>
+        <!-- <form action="timeline.php" method="POST">
             <input type="hidden" name="game_id" value="2">
             <input type="submit" value="タイムライン">
-        </form>
+        </form> -->
 
     </body>
 </html>

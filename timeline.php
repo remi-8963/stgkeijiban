@@ -1,6 +1,8 @@
 <?php
     require('common.php');
 
+    $game_id = $_GET['game_id'] ?? 1;
+
     $sql = "SELECT id,title FROM games";
     // $sql = "SELECT games.id,title,timelines.game_id FROM games JOIN timelines ON games.id = timelines.game_id";
 
@@ -55,8 +57,8 @@
     //おおもとのコメント
     // $select_root_comments = "SELECT timelines.id AS id, timelines.user_id AS user_id, timelines.text AS text, timelines.created_at AS created_at, users.name AS name FROM timelines JOIN users ON timelines.user_id = users.id WHERE timelines.destination_comment_id IS NULL ORDER BY timelines.created_at DESC";
 
-    $select_root_comments = "SELECT timelines.id AS id, timelines.user_id AS user_id, timelines.text AS text, timelines.created_at AS created_at, users.name AS name, timelines.game_id AS game_id FROM timelines JOIN users ON timelines.user_id = users.id WHERE timelines.destination_comment_id IS NULL ORDER BY timelines.created_at DESC";
-    
+    $select_root_comments = "SELECT timelines.id AS id, timelines.user_id AS user_id, timelines.text AS text, timelines.created_at AS created_at, users.name AS name, timelines.game_id AS game_id FROM timelines JOIN users ON timelines.user_id = users.id WHERE game_id = ".$game_id." AND timelines.destination_comment_id IS NULL ORDER BY timelines.created_at DESC";
+
     $root_comments = mysqli_query($db, $select_root_comments) or die(mysqli_error($db));
 
     $id = $_SESSION['user_id'] ?? '';
@@ -85,10 +87,9 @@
       <form action="timeline_create.php" method="POST">
         <select name="game_id">
           <?php while($game = mysqli_fetch_assoc($games)):?>
-          <option value="<?=$game['id']?>" <?=($_POST['game_id'] == $game['id']) ? 'selected' : ''?>><?=$game['title']?></option>" : " "     
+          <option value="<?=$game['id']?>" <?=($game_id == $game['id']) ? 'selected' : ''?>><?=$game['title']?></option>" : " "     
           <?php endwhile ?> 
         </select>
-
         <table>
           <?php if($destination_comment_id): ?>
             <tr>
