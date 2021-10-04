@@ -19,4 +19,4 @@ $sql = sprintf('INSERT INTO timelines SET user_id=%d, game_id=%d, text="%s", des
 
 mysqli_query($db,$sql) or die(mysqli_error($db));
 
-header('Location: timeline.php');
+header("Location: timeline.php?game_id=$game_id");

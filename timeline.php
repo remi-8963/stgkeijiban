@@ -80,8 +80,6 @@
     <h1>タイムライン</h1>
     <a href="index.php"><button style="margin: 10px 0">← トップページ</button></a>
 
-    <h3>タイムラインの選択</h3>
-
     <?php if(is_logged_in()): ?>
 
       <form action="timeline_create.php" method="POST">
