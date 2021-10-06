@@ -39,6 +39,19 @@
             <input type="submit" value="k/d検索">
         </form>
 
+        <h2>リンク</h2>
+        <?php if(!$session_user_id): ?>
+            <a href="signup.php"><button>自分のプロフィールを作ってみる！</button></a>
+        <?php endif ?>
+        <form action="timeline.php" method="GET">
+        <select name="game_id">
+          <?php while($game = mysqli_fetch_assoc($games)):?>
+            <option value="<?=$game['id']?>" <?=$game['id'] ? 'selected' : ''?>><?=$game['title']?></option>" : " "     
+          <?php endwhile ?> 
+          <input type="submit" value="タイムライン選択">
+        </select>
+        </form>
+
         <h2>ユーザー一覧</h2>
         
         <table>
@@ -60,19 +73,6 @@
                 </tr>
             <?php endwhile ?>
         </table>
-        
-        <h2>リンク</h2>
-        <?php if(!$session_user_id): ?>
-            <a href="signup.php"><button>自分のプロフィールを作ってみる！</button></a>
-        <?php endif ?>
-        <form action="timeline.php" method="GET">
-        <select name="game_id">
-          <?php while($game = mysqli_fetch_assoc($games)):?>
-          <option value="<?=$game['id']?>" <?=$game['id'] ? 'selected' : ''?>><?=$game['title']?></option>" : " "     
-          <?php endwhile ?> 
-          <input type="submit" value="タイムラインへ">
-        </select>
-        </form>
 
     </body>
 </html>

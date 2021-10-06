@@ -35,7 +35,7 @@
             <?=h($text)?> <!--クロスサイトスプリクティング対策-->
           </div>
           <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:10px">
-            <a href="?destination_comment_id=<?=$id?>">
+            <a href="?destination_comment_id=<?=$id?>&game_id=<?=$_GET['game_id']?>">
               <button>返信する</button>
             </a>
             <span style="color:#4084B0">投稿日時: <?=$created_at?></span>
@@ -44,6 +44,7 @@
       <?php
       //$idでコメントを取ってくる
       //投稿に対する返信
+
       $select_reply_comments = "SELECT timelines.id AS id, timelines.user_id AS user_id, timelines.text AS text, timelines.created_at AS created_at, users.name AS name FROM timelines JOIN users ON timelines.user_id = users.id WHERE timelines.destination_comment_id = $id ORDER BY timelines.created_at DESC";
       
       $replied_comments = mysqli_query($db, $select_reply_comments);
@@ -81,18 +82,15 @@
     <a href="index.php"><button style="margin: 10px 0">← トップページ</button></a>
 
     <?php if(is_logged_in()): ?>
-
       <form action="timeline_create.php" method="POST">
-        <select name="game_id">
-          <?php while($game = mysqli_fetch_assoc($games)):?>
-          <option value="<?=$game['id']?>" <?=($game_id == $game['id']) ? 'selected' : ''?>><?=$game['title']?></option>" : " "     
-          <?php endwhile ?> 
-        </select>
+        <?php while($game = mysqli_fetch_assoc($games)):?>
+          <input type="hidden" name="game_id" value="<?=$game_id?>">
+        <?php endwhile ?>
         <table>
           <?php if($destination_comment_id): ?>
             <tr>
               <input type="hidden" name="destination_comment_id" value="<?=$destination_comment_id?>">
-              <th>返信先コメント</th><td><?=mysqli_fetch_assoc(mysqli_query($db, "SELECT text FROM timelines WHERE id = $destination_comment_id"))['text']?></td>
+              <th>返信先コメント</th><td><?=mysqli_fetch_assoc(mysqli_query($db, "SELECT text,game_id FROM timelines WHERE id = $destination_comment_id"))['text']?></td>
             </tr>
           <?php endif; ?>
           <tr>
