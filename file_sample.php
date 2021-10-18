@@ -18,10 +18,11 @@ if(isset($_FILES['uploadfile'])){
     </form>
    
 <?php
+$path = './imgs_sample/';
 $file = $_FILES['uploadfile'];
     print('ファイル名:'.$file['name'].'<br/>');
 
-move_uploaded_file($file['tmp_name'],'./'.$file['name']);
+move_uploaded_file($file['tmp_name'],$path.$file['name']);
 // header('Content-type: image/png');
 // readfile($_FILES['uploadfile']['tmp_name']);
 }else{
