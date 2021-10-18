@@ -31,4 +31,4 @@ move_uploaded_file($file['tmp_name'],$path.$file['name']);
 ?>
 
 </div>
-<img src="<?=$file['name']?>"/>
+<img src="<?=$path.$file['name']?>"/>
