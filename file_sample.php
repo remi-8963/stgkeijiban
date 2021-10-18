@@ -18,7 +18,10 @@ if(isset($_FILES['uploadfile'])){
     </form>
    
 <?php
-// move_uploaded_file($file['tmp_name'],'./'.$file['name']);
+$file = $_FILES['uploadfile'];
+    print('ファイル名:'.$file['name'].'<br/>');
+
+move_uploaded_file($file['tmp_name'],'./'.$file['name']);
 // header('Content-type: image/png');
 // readfile($_FILES['uploadfile']['tmp_name']);
 }else{
@@ -27,4 +30,4 @@ if(isset($_FILES['uploadfile'])){
 ?>
 
 </div>
-<img src="<?=$_FILES['uploadfile']?>"/>
+<img src="<?=$file['name']?>"/>
