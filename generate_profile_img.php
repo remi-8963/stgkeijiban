@@ -106,7 +106,7 @@ function generate_profile_img($id, $db) {
 
     imagecopyresampled($image, $icon_image, 0, 0, $src_x, $src_y, 600, 200, $src_width, $src_height);
 
-    imagepng($image, "./~tklab2021/091/stgkeijiban/profile_images/profile_images/$id.png");
+    imagepng($image, "./profile_images/$id.png");
 
     imagedestroy($image);
 }
