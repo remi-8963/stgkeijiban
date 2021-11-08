@@ -2,3 +2,4 @@
 /profile_images/*
 !/profile_images/test
 /uploaded_profile_images/*
+!/uploaded_profile_images/test
