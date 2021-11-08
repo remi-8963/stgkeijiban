@@ -44,7 +44,7 @@ $id = mysqli_insert_id($db);
 
 $_SESSION['user_id'] = $id;
 
-require_once('https://stgkeijiban.com/~tklab2021/091/stgkeijiban/generate_profile_img.php');
+require_once('./generate_profile_img.php');
 generate_profile_img($id, $db);
 
 header("Location: user.php?id=$id");
