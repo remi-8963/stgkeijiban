@@ -7,6 +7,7 @@ if(empty($_POST)) {
     exit();
 }
 
+
 $name = $_POST['name'] ?? '';
 $sex = $_POST['sex'] ?? '';
 $pass_word = $_POST['pass_word'] ?? '';
@@ -42,6 +43,9 @@ mysqli_query($db,$sql)or die(mysqli_error($db));
 $id = mysqli_insert_id($db);
 
 $_SESSION['user_id'] = $id;
+
+require_once('./generate_profile_img.php');
+generate_profile_img($id, $db);
 
 header("Location: user.php?id=$id");
 exit();

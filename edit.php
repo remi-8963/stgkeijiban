@@ -55,6 +55,5 @@ if (!$row) {
                 <input type="submit" value="プロフィールを更新する">
             </p>
         </form>
-        <form action=''
     </body>
 </html>

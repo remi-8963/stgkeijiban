@@ -14,9 +14,13 @@
           <a href="user.php?id=<?=$session_user_id?>"><button>マイプロフィール</button></a>
           <a href="logout.php"><button>ログアウト</button></a>
         </div>
+        
         <div style="display:flex; align-items:center; margin-top: 10px">
           <div style="display:inline-block; width: 50px; height: 50px; background-color:white; border-radius: 9999px; overflow: hidden">
-            <img src="https://pbs.twimg.com/profile_images/1309957523089354760/uRrxAmOB_400x400.jpg" style="display: inline-block; width: 100%; height: 100%"> 
+          
+            <!-- <img src="https://pbs.twimg.com/profile_images/1309957523089354760/uRrxAmOB_400x400.jpg" style="display: inline-block; width: 100%; height: 100%">  -->
+            <img src="uploaded_profile_images/<?=$session_user_id?>.jpg" style="display: inline-block; width: 100%; height: 100%">
+        
           </div> 
           <span style="margin-left:10px">
             こんにちは、<?=mysqli_fetch_assoc(mysqli_query($db, "SELECT name FROM users WHERE id = $session_user_id"))['name']?>さん！

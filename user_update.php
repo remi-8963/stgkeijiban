@@ -29,5 +29,8 @@ $sql = sprintf('UPDATE users SET name="%s", sex="%s", play_style="%s", active_ti
 
 mysqli_query($db,$sql)or die(mysqli_error($db));
 
+require_once('./generate_profile_img.php');
+generate_profile_img($user_id, $db);
+
 header("Location: user.php?id=$user_id");
 exit();

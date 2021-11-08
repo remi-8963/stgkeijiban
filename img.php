@@ -1,4 +1,5 @@
 <?php
+header("Content-type: image/png");
 
 require('./common.php');
 
@@ -34,9 +35,12 @@ $result_users_games = mysqli_query($db,$sql_users_games) or die(mysqli_error($db
 //     $y += 50;
 // }
 
+$textcolor = imagecolorallocate($image, 255, 255, 255);
+
+$row_games = mysqli_fetch_assoc($result_users_games);
+
 for($a=0;$a<3;$a++){
     for($i=0;$i<3;$i++){
-        $row_games = mysqli_fetch_assoc($result_users_games);
         for($j=0;$j<1;$j++){
             $text_title = mb_convert_encoding($row_games['title'], "UTF-8", "auto");
             imagettftext($image, 30, 0, $x, $y, $textcolor, './rounded-mplus-1c-bold.ttf', $text_title);
@@ -46,7 +50,6 @@ for($a=0;$a<3;$a++){
     $y = 130;
     $x += 120;
 }
-
 
 $text_name = mb_convert_encoding($name, "UTF-8", "auto");
 imagettftext($image, 20, 0, 270, 345, $textcolor, './rounded-mplus-1c-bold.ttf', $text_name);
@@ -62,8 +65,8 @@ imagettftext($image, 20, 0, 650, 400, $textcolor, './rounded-mplus-1c-bold.ttf',
 
 imagecopy($image, $icon_image, 0, 0, 0, 0, 600, 200);
 
-header("Content-type: image/png");
-imagepng($image);
+imagepng($image, './tmp.png');
+// readfile('./template1.jpg');
 
 imagedestroy($image);
 ?>

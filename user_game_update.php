@@ -31,5 +31,9 @@ $sql = sprintf('INSERT INTO users_games (user_id, game_id, user_name, kill_rate,
 );
 
 mysqli_query($db, $sql) or die(mysqli_error($db));
+
+require_once('./generate_profile_img.php');
+generate_profile_img($user_id, $db);
+
 header("Location: user_game_list.php");
 exit();

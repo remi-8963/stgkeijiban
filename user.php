@@ -16,6 +16,10 @@
 
     $result = mysqli_query($db, $sql_users) or die(mysqli_error($db));
     $row = mysqli_fetch_assoc($result);
+
+    $games_sql = "SELECT id,title FROM games";
+
+    $games = mysqli_query($db,$games_sql) or die(mysqli_error($db));
     
     
 
@@ -63,7 +67,7 @@
         <meta property="og:title" content="<?=h($name)?>さんのプロフィール"> <!-- タイトル　-->
         <meta property="og:description" content="<?=h($name)?>さんのプロフィール"><!-- 対象の説明 -->
         <meta property="og:type" content="article"> <!-- ページの種類　-->
-        <meta property="og:image" content="https://stgkeijiban.com/~tklab2021/091/stgkeijiban/img.php?id=<?=h($id)?>"><!-- 対象用の画像URL -->
+        <meta property="og:image" content="https://stgkeijiban.com/~tklab2021/091/stgkeijiban/uploaded_profile_images/<?=$session_user_id?>.jpg"><!-- 対象用の画像URL -->
         <meta property="og:url" content="https://stgkeijiban.com/~tklab2021/091/stgkeijiban"><!-- ページのURL -->
         <meta name="twitter:card" content="summary_large_image">　<!-- カードのサイズ -->
         <meta name="twitter:title" content="<?=h($name)?>さんのプロフィール">
@@ -74,7 +78,7 @@
     <body>
         <?=login_banner()?>
         <h1><?=h($name)?>さんのプロフィール　　　　　　　ID:<?=h($id)?></h1>
-        <img src="img.php?id=<?=h($id)?>">
+        <img src="profile_images/<?=h($id)?>.png">
         <table border="1">
             <?php foreach($form_data as $data): ?>
                 <tr>
@@ -124,14 +128,21 @@
                 <?php if($session_user_id == $id): ?>
                     <li><a href="login.php?id=<?=h($id)?>"><button>プロフィールの編集</button></a></li>
                     <li><a href="user_game_list.php"><button>ゲームの登録/編集</button></a></li>
+                    <li><a href="profile_upload.html"><button>プロフィール画像の変更</button></a></li>
                 <?php endif ?>
                 <?php if(!$session_user_id): ?>
                     <li><a href="signup.php"><button>自分のプロフィールも作ってみる！</button></a></li>
                 <?php endif ?>
                     <li><a href="index.php"><button>トップページに戻る</button></a></li>
                     <li><a href="https://twitter.com/intent/tweet?url=https://stgkeijiban.com/~tklab2021/091/stgkeijiban/user.php?id=<?=h($id)?>&text=<?=h($name)?>さんのプロフィールをみにいこう！"><button>共有</button></a></li>
-                    <li><a href="timeline.php"><button>タイムライン</button></a></li>
             </ul>
-            
+            <form action="timeline.php" method="GET">
+                <select name="game_id">
+                <?php while($game = mysqli_fetch_assoc($games)):?>
+                <option value="<?=$game['id']?>" <?=$game['id'] ? 'selected' : ''?>><?=$game['title']?></option>" : " "     
+                <?php endwhile ?> 
+                <input type="submit" value="タイムライン選択">
+                </select>
+            </form>
         </body>
 </html>

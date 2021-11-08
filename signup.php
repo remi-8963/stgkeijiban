@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
     </head>
     <body>
-        <form action="user_create.php" method="post">
+        <form action="user_create.php" method="post" enctype="multipart/form-data">
             <table border="1">
                 <caption>プロフィール作成</caption>
                 <?php foreach($form_data as $data): ?>
@@ -43,7 +43,9 @@
             <p>※パスワードはセキュリティのため4文字以上記入してください</p>
             <input type="submit" value="登録確認">
             <input type="reset" value="リセット">
-        </form>
+            </form>
+
+
         <a href="index.php"><button>トップページに戻る</button></a>
     </body>
 </html>
