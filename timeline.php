@@ -25,7 +25,7 @@
           <div style="display:flex; align-items:center">
           <!-- アイコン画像 -->
             <div style="display:inline-block; width: 50px; height: 50px; background-color:white; border-radius: 9999px; overflow: hidden">
-              <img src="https://pbs.twimg.com/profile_images/1309957523089354760/uRrxAmOB_400x400.jpg" style="display: inline-block; width: 100%; height: 100%">
+              <img src="uploaded_profile_images/<?=$user_id?>.jpg" style="display: inline-block; width: 100%; height: 100%">
             </div>
             <a href="user.php?id=<?=h($user_id)?>" style="margin-left: 10px; text-decoration:none;">
               <span><?=h($name)?></span>
@@ -78,7 +78,7 @@
 </head>
 <body>
     <?=login_banner()?>
-    <h1>タイムライン</h1>
+    <h1><font color="#ffd900">タイムライン</font></h1>
     <a href="index.php"><button style="margin: 10px 0">← トップページ</button></a>
 
     <?php if(is_logged_in()): ?>
@@ -102,7 +102,7 @@
         </table>
       </form>
     <?php else: ?>
-      <p>ログインすると投稿できます。</p>
+      <p><font color="#e60033">ログインすると投稿できます。</font></p>
     <?php endif ?>
     
     <?php while($root_comment = mysqli_fetch_assoc($root_comments)): ?>

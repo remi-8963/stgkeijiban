@@ -23,15 +23,15 @@
     </head>
     <body>
         <?=login_banner()?>
-        <h1>FPS.TPSゲーム専用交流サイト</h1>
+        <h1><font color="#ffd900">FPS.TPSゲーム専用交流サイト</font></h1>
 
-        <h2>名前検索</h2>
+        <h2><font color="#b8d200">名前検索</font></h2>
         <form action="search.php" method="GET">
             <input type="text" name="name">
             <input type="submit" value="検索する">
         </form>
 
-        <h2>K/D検索</h2>
+        <h2><font color="#b8d200">K/D検索</font></h2>
         <form action="kill_rate_search.php" method="GET">
             <input type="hidden" name="game_id" value="1">
             <input type="hidden" name="min_kill_rate" value="0">
@@ -39,7 +39,7 @@
             <input type="submit" value="k/d検索">
         </form>
 
-        <h2>リンク</h2>
+        <h2><font color="#b8d200">リンク</font></h2>
         <?php if(!$session_user_id): ?>
             <a href="signup.php"><button>自分のプロフィールを作ってみる！</button></a>
         <?php endif ?>
@@ -52,7 +52,7 @@
         </select>
         </form>
 
-        <h2>ユーザー一覧</h2>
+        <h2><font color="#b8d200">ユーザー一覧</font></h2>
         
         <table>
 

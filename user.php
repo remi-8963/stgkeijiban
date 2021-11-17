@@ -77,8 +77,8 @@
     </head>
     <body>
         <?=login_banner()?>
-        <h1><?=h($name)?>さんのプロフィール　　　　　　　ID:<?=h($id)?></h1>
-        <img src="profile_images/<?=h($id)?>.png">
+        <h1><?=h($name)?>さんのプロフィール　　　　　　　<font color="#ffd900">ID:<?=h($id)?></font></h1>
+        <img src="./profile_images/<?=h($id)?>.png">
         <table border="1">
             <?php foreach($form_data as $data): ?>
                 <tr>

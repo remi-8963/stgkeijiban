@@ -27,7 +27,7 @@ $games = mysqli_query($db,$sql) or die(mysqli_error($db));
     <body>
         <?=login_banner()?>
     <!-- ゲーム指定 -->
-        <h3>検索するゲーム選択</h3>
+        <h1><font color="#ffd900">検索するゲーム選択</font></h1>
         <form action="" method="GET">
             <select name="game_id">
                 <?php while($game = mysqli_fetch_assoc($games)):?>
@@ -35,7 +35,7 @@ $games = mysqli_query($db,$sql) or die(mysqli_error($db));
                 <?php endwhile ?> 
             </select>
     <!-- キルレート検索 -->
-        <h3>キルレート検索範囲</h3>
+        <h3><font color="#b8d200">キルレート検索範囲</font></h3>
                 最低K/D
                 <input type="text" name="min_kill_rate" value="<?=$_GET['min_kill_rate']?>">
                 最高K/D
@@ -49,7 +49,7 @@ $games = mysqli_query($db,$sql) or die(mysqli_error($db));
             ." WHERE kill_rate >= ".$_GET['min_kill_rate']." AND kill_rate <= ".$_GET['max_kill_rate']." AND game_id = ".$_GET['game_id'];
         $game_dates = mysqli_query($db,$sql_game_date) or die(mysqli_error($db));
         ?>
-        <h3>検索結果(<?=mysqli_num_rows($game_dates)?>件)</h3>
+        <h3><font color="#b8d200">検索結果(<?=mysqli_num_rows($game_dates)?>件)</font></h3>
         <table>
             <tr>
                 <th>ID</th>
