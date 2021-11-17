@@ -67,7 +67,7 @@
         <meta property="og:title" content="<?=h($name)?>さんのプロフィール"> <!-- タイトル　-->
         <meta property="og:description" content="<?=h($name)?>さんのプロフィール"><!-- 対象の説明 -->
         <meta property="og:type" content="article"> <!-- ページの種類　-->
-        <meta property="og:image" content="./profile_images/<?=$session_user_id?>.png"><!-- 対象用の画像URL -->
+        <meta property="og:image" content="./profile_images/1.png"><!-- 対象用の画像URL -->
         <meta property="og:url" content="https://cs-tklab2.na-inet.jp/~tklab2021/091/stgkeijiban"><!-- ページのURL -->
         <meta name="twitter:card" content="summary_large_image">　<!-- カードのサイズ -->
         <meta name="twitter:title" content="<?=h($name)?>さんのプロフィール">
