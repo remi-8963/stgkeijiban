@@ -134,7 +134,7 @@
                     <li><a href="signup.php"><button>自分のプロフィールも作ってみる！</button></a></li>
                 <?php endif ?>
                     <li><a href="index.php"><button>トップページに戻る</button></a></li>
-                    <li><a href="https://twitter.com/intent/tweet?url=https://stgkeijiban.com/~tklab2021/091/stgkeijiban/user.php?id=<?=h($id)?>&text=<?=h($name)?>さんのプロフィールをみにいこう！"><button>共有</button></a></li>
+                    <li><a href="https://twitter.com/intent/tweet?url=https://cs-tklab2.na-inet.jp/~tklab2021/091/stgkeijiban/user.php?id=<?=h($id)?>&text=<?=h($name)?>さんのプロフィールをみにいこう！"><button>共有</button></a></li>
             </ul>
             <form action="timeline.php" method="GET">
                 <select name="game_id">
