@@ -23,7 +23,7 @@ if(
         <title>ログイン画面</title>
     </head>
     <body>
-        <h1>ログイン画面</h1>
+        <h1><font color="#ffd900">ログイン画面</font></h1>
         <a href="./"><button>←トップに戻る</button></a>
         <hr>
         <p style="color:red"><?=$_GET['message'] ?? ''?></p>
